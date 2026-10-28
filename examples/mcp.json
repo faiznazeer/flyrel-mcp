@@ -1,8 +1,8 @@
 {
   "mcpServers": {
-    "brokerbridge": {
+    "flyrel": {
       "command": "uv",
-      "args": ["--directory", "/absolute/path/to/brokerbridge-mcp", "run", "--locked", "brokerbridge", "serve"]
+      "args": ["--directory", "/absolute/path/to/flyrel-mcp", "run", "--locked", "flyrel", "serve"]
     }
   }
 }

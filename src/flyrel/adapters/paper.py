@@ -1,7 +1,7 @@
 from datetime import UTC, datetime
 from decimal import Decimal
 
-from brokerbridge.models import Account, Quote, currency_for
+from flyrel.models import Account, Quote, currency_for
 
 PRICES = {"US:AAPL": Decimal("100"), "NSE:RELIANCE": Decimal("1000")}
 SNAPSHOT = datetime(2026, 1, 1, tzinfo=UTC)

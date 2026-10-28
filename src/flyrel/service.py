@@ -1,11 +1,11 @@
 from pathlib import Path
 
-from brokerbridge.adapters.alpaca import AlpacaAdapter
-from brokerbridge.adapters.kite import KiteAdapter
-from brokerbridge.adapters.paper import PaperAdapter
-from brokerbridge.config import Settings
-from brokerbridge.models import Policy
-from brokerbridge.store import Store
+from flyrel.adapters.alpaca import AlpacaAdapter
+from flyrel.adapters.kite import KiteAdapter
+from flyrel.adapters.paper import PaperAdapter
+from flyrel.config import Settings
+from flyrel.models import Policy
+from flyrel.store import Store
 
 
 class Service:

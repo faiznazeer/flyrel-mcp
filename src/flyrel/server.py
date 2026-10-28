@@ -4,16 +4,16 @@ from typing import Annotated, Any, Literal
 from mcp.server.fastmcp import FastMCP
 from pydantic import AwareDatetime, Field
 
-from brokerbridge.adapters.base import Interval
-from brokerbridge.config import Settings
-from brokerbridge.models import OrderRequest, Symbol, currency_for
-from brokerbridge.service import Service
+from flyrel.adapters.base import Interval
+from flyrel.config import Settings
+from flyrel.models import OrderRequest, Symbol, currency_for
+from flyrel.service import Service
 
 
 def create_server(settings: Settings | None = None) -> tuple[FastMCP, Service]:
     service = Service(settings or Settings())
     mcp = FastMCP(
-        "BrokerBridge",
+        "Flyrel",
         instructions=(
             "External brokers are read-only. Paper tools use synthetic local state. "
             "Two calls do not prove human approval. Synthetic quotes are not market data."

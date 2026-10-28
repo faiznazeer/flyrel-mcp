@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Literal, Protocol
 
-from brokerbridge.models import Account, Bar, Order, Position, Quote
+from flyrel.models import Account, Bar, Order, Position, Quote
 
 Interval = Literal["1Min", "1Hour", "1Day"]
 

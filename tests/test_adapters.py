@@ -4,9 +4,9 @@ from decimal import Decimal
 import httpx
 import pytest
 
-from brokerbridge.adapters.alpaca import AlpacaAdapter
-from brokerbridge.adapters.http import BrokerReadError
-from brokerbridge.adapters.kite import KiteAdapter
+from flyrel.adapters.alpaca import AlpacaAdapter
+from flyrel.adapters.http import BrokerReadError
+from flyrel.adapters.kite import KiteAdapter
 
 
 def test_alpaca_quotes_history_pagination_and_read_only():

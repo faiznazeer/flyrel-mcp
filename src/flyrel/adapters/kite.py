@@ -3,9 +3,9 @@ import io
 from datetime import datetime
 from decimal import Decimal
 
-from brokerbridge.adapters.base import Interval
-from brokerbridge.adapters.http import ReadOnlyHTTP
-from brokerbridge.models import Account, Bar, Order, Position, Quote, validate_range
+from flyrel.adapters.base import Interval
+from flyrel.adapters.http import ReadOnlyHTTP
+from flyrel.models import Account, Bar, Order, Position, Quote, validate_range
 
 
 class KiteAdapter(ReadOnlyHTTP):

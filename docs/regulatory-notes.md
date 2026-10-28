@@ -44,7 +44,7 @@ and local eligibility need separate treatment before execution.
   [paper trading](https://docs.alpaca.markets/us/v1.4.2/docs/paper-trading): data feeds and
   paper/live account environments are distinct.
 - [Alpaca's official MCP documentation](https://docs.alpaca.markets/us/docs/trading-api-mcp)
-  confirms its own connector exists. BrokerBridge's initial implementation talks to REST directly;
+  confirms its own connector exists. Flyrel's initial implementation talks to REST directly;
   it does not proxy or require a broker MCP server.
 
 The community/official status of every other broker connector in the original discussion has

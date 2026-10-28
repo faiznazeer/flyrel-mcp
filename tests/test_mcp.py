@@ -8,22 +8,25 @@ from mcp.client.stdio import stdio_client
 
 def test_stdio_round_trip_without_credentials(tmp_path):
     async def run():
-        env = {k: v for k, v in os.environ.items() if not k.startswith("BROKERBRIDGE_")}
+        env = {
+            k: v for k, v in os.environ.items() if not k.startswith(("FLYREL_", "BROKERBRIDGE_"))
+        }
         env.update(
             {
-                "BROKERBRIDGE_STATE_DIR": str(tmp_path / "state"),
-                "BROKERBRIDGE_KITE_API_KEY": "",
-                "BROKERBRIDGE_KITE_ACCESS_TOKEN": "",
-                "BROKERBRIDGE_ALPACA_API_KEY": "",
-                "BROKERBRIDGE_ALPACA_SECRET_KEY": "",
+                "FLYREL_STATE_DIR": str(tmp_path / "state"),
+                "FLYREL_KITE_API_KEY": "",
+                "FLYREL_KITE_ACCESS_TOKEN": "",
+                "FLYREL_ALPACA_API_KEY": "",
+                "FLYREL_ALPACA_SECRET_KEY": "",
             }
         )
         parameters = StdioServerParameters(
-            command=sys.executable, args=["-m", "brokerbridge.cli", "serve"], env=env
+            command=sys.executable, args=["-m", "flyrel.cli", "serve"], env=env
         )
         async with stdio_client(parameters) as (read, write):
             async with ClientSession(read, write) as session:
-                await session.initialize()
+                initialized = await session.initialize()
+                assert initialized.serverInfo.name == "Flyrel"
                 tools = {t.name for t in (await session.list_tools()).tools}
                 assert {"propose_order", "confirm_order", "get_quotes", "kill_switch"} <= tools
                 assert "set_policy" not in tools and "get_history" not in tools

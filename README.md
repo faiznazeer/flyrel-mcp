@@ -1,7 +1,10 @@
-# BrokerBridge MCP
+# Flyrel MCP
 
 A self-hosted Python foundation for working with multiple brokers through one MCP server.
 Initial markets: India and US cash equities. Initial adapters: Zerodha Kite and Alpaca.
+
+Previously named BrokerBridge. The Python package and CLI are now `flyrel`; the distribution
+and repository are `flyrel-mcp`.
 
 **Status: early foundation, not a trading product.** External brokers are read-only. All
 order mutations stay in a local synthetic sandbox. No live-order implementation or enable-live
@@ -12,11 +15,11 @@ flag exists. No broker credentials are needed to run the demo.
 Requires Python 3.12+ and [uv](https://docs.astral.sh/uv/).
 
 ```bash
-git clone https://github.com/faiznazeer/brokerbridge-mcp.git
-cd brokerbridge-mcp
+git clone https://github.com/faiznazeer/flyrel-mcp.git
+cd flyrel-mcp
 uv sync --locked
-uv run brokerbridge check
-uv run brokerbridge serve
+uv run flyrel check
+uv run flyrel serve
 ```
 
 `serve` speaks MCP over stdio and waits for a client. Application output must not be written
@@ -50,7 +53,7 @@ issues, examples, or commits. The server reads `.env` but does not create tokens
 
 Kite tokens must be obtained/renewed through the broker's supported login flow. Market data and
 historical access depend on broker entitlements. Alpaca defaults to the broker's paper account
-endpoint and IEX stock data; `BROKERBRIDGE_ALPACA_PAPER=false` selects a live **read-only** account
+endpoint and IEX stock data; `FLYREL_ALPACA_PAPER=false` selects a live **read-only** account
 snapshot. It does not enable trading. External adapter tests use mocked HTTP; no real account
 has been connected or verified for this initial commit.
 
@@ -67,9 +70,9 @@ again at confirmation under a SQLite write transaction. Persistent idempotency k
 conflicting payloads and make confirmation retries return the existing order within token TTL.
 
 ```bash
-uv run brokerbridge set-policy examples/policy.json
-uv run brokerbridge halt
-uv run brokerbridge resume
+uv run flyrel set-policy examples/policy.json
+uv run flyrel halt
+uv run flyrel resume
 ```
 
 Policy modification and resume are local CLI operations, never MCP tools. The kill switch blocks
@@ -78,6 +81,12 @@ and confirmation are callable by an agent, so **two calls do not establish human
 A separately authenticated human approval channel is future work before remote execution.
 
 State lives in ignored `.state/`: SQLite proposals/orders/audit metadata and optional `policy.json`.
+New installs use `flyrel.sqlite3`. Existing installs continue using `brokerbridge.sqlite3` in
+the same state directory, preserving orders, idempotency records and the kill switch in place.
+Use `FLYREL_` environment variables for new configuration. Legacy `BROKERBRIDGE_` variables
+remain supported in the environment and `.env`; `FLYREL_` wins when both names are set in
+the same source. Environment variables take precedence over `.env`. Keep the same state
+directory when upgrading, and update MCP client commands to `flyrel`.
 New state directories/files use restrictive permissions. Tokens are stored as hashes. Tool audit
 records store action/outcome metadata, not credentials, confirmation tokens, arguments, or account
 responses. This is a local diagnostic log, not a tamper-proof compliance or replay archive.

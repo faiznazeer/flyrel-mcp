@@ -3,14 +3,14 @@ import json
 import os
 from pathlib import Path
 
-from brokerbridge.config import Settings
-from brokerbridge.models import Policy
-from brokerbridge.server import create_server
-from brokerbridge.store import Store
+from flyrel.config import Settings
+from flyrel.models import Policy
+from flyrel.server import create_server
+from flyrel.store import Store
 
 
 def main():
-    parser = argparse.ArgumentParser(description="BrokerBridge local MCP server and paper controls")
+    parser = argparse.ArgumentParser(description="Flyrel local MCP server and paper controls")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("serve", help="Run the stdio MCP server")
     commands.add_parser("check", help="Inspect local config without connecting to broker APIs")
