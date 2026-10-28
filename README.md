@@ -3,9 +3,6 @@
 A self-hosted Python foundation for working with multiple brokers through one MCP server.
 Initial markets: India and US cash equities. Initial adapters: Zerodha Kite and Alpaca.
 
-Previously named BrokerBridge. The Python package and CLI are now `flyrel`; the distribution
-and repository are `flyrel-mcp`.
-
 **Status: early foundation, not a trading product.** External brokers are read-only. All
 order mutations stay in a local synthetic sandbox. No live-order implementation or enable-live
 flag exists. No broker credentials are needed to run the demo.
@@ -80,13 +77,8 @@ new local orders; it does not cancel outstanding orders or affect broker account
 and confirmation are callable by an agent, so **two calls do not establish human approval**.
 A separately authenticated human approval channel is future work before remote execution.
 
-State lives in ignored `.state/`: SQLite proposals/orders/audit metadata and optional `policy.json`.
-New installs use `flyrel.sqlite3`. Existing installs continue using `brokerbridge.sqlite3` in
-the same state directory, preserving orders, idempotency records and the kill switch in place.
-Use `FLYREL_` environment variables for new configuration. Legacy `BROKERBRIDGE_` variables
-remain supported in the environment and `.env`; `FLYREL_` wins when both names are set in
-the same source. Environment variables take precedence over `.env`. Keep the same state
-directory when upgrading, and update MCP client commands to `flyrel`.
+State lives in ignored `.state/`: `flyrel.sqlite3` holds proposals/orders/audit metadata,
+alongside optional `policy.json`.
 New state directories/files use restrictive permissions. Tokens are stored as hashes. Tool audit
 records store action/outcome metadata, not credentials, confirmation tokens, arguments, or account
 responses. This is a local diagnostic log, not a tamper-proof compliance or replay archive.

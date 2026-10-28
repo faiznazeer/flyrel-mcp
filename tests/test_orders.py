@@ -31,31 +31,6 @@ def test_persistent_idempotency_and_cancel(tmp_path):
     assert reopened.confirm(token, Policy()).status == "cancelled"
 
 
-def test_existing_state_preserves_orders_idempotency_proposals_and_halt(tmp_path):
-    store = Store(tmp_path)
-    assert store.path.name == "flyrel.sqlite3"
-    policy = Policy()
-    token = store.propose(request(), policy)["confirmation_token"]
-    order = store.confirm(token, policy)
-    pending = store.propose(request(idempotency_key="pending-order-02"), policy)
-    store.halt()
-    legacy_path = tmp_path / "brokerbridge.sqlite3"
-    store.path.rename(legacy_path)
-
-    reopened = Store(tmp_path)
-    assert reopened.path == legacy_path
-    assert not (tmp_path / "flyrel.sqlite3").exists()
-    assert reopened.orders() == [order]
-    assert reopened.confirm(token, policy) == order
-    assert reopened.halted()
-    with pytest.raises(ValueError, match="disabled"):
-        reopened.confirm(pending["confirmation_token"], policy)
-    reopened.resume()
-    assert reopened.confirm(pending["confirmation_token"], policy).status == "open"
-    with pytest.raises(ValueError, match="already executed"):
-        reopened.propose(request(), policy)
-
-
 def test_concurrent_confirmation_is_once(tmp_path):
     store = Store(tmp_path)
     token = store.propose(request(), Policy())["confirmation_token"]

@@ -14,9 +14,7 @@ class Store:
 
     def __init__(self, directory: Path):
         directory.mkdir(mode=0o700, parents=True, exist_ok=True)
-        legacy_path = directory / "brokerbridge.sqlite3"
-        # Reuse existing state in place, including SQLite sidecars, orders and the halt flag.
-        self.path = legacy_path if legacy_path.exists() else directory / "flyrel.sqlite3"
+        self.path = directory / "flyrel.sqlite3"
         self.path.touch(mode=0o600, exist_ok=True)
         with self.db() as db:
             db.executescript("""

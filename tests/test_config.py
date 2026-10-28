@@ -8,13 +8,12 @@ from flyrel.config import Settings
 @pytest.fixture(autouse=True)
 def clean_settings_environment(monkeypatch):
     for name in os.environ:
-        if name.startswith(("FLYREL_", "BROKERBRIDGE_")):
+        if name.startswith("FLYREL_"):
             monkeypatch.delenv(name)
 
 
-@pytest.mark.parametrize("prefix", ["FLYREL_", "BROKERBRIDGE_"])
 @pytest.mark.parametrize("source", ["environment", "dotenv"])
-def test_configuration_names_preserve_broker_mapping(tmp_path, monkeypatch, prefix, source):
+def test_configuration_preserves_broker_mapping(tmp_path, monkeypatch, source):
     values = {
         "STATE_DIR": str(tmp_path / "custom-state"),
         "KITE_API_KEY": "synthetic-kite-key",
@@ -27,9 +26,9 @@ def test_configuration_names_preserve_broker_mapping(tmp_path, monkeypatch, pref
     env_file = tmp_path / ".env"
     if source == "environment":
         for name, value in values.items():
-            monkeypatch.setenv(prefix + name, value)
+            monkeypatch.setenv("FLYREL_" + name, value)
     else:
-        env_file.write_text("".join(f"{prefix}{name}={value}\n" for name, value in values.items()))
+        env_file.write_text("".join(f"FLYREL_{name}={value}\n" for name, value in values.items()))
     settings = Settings(_env_file=env_file)
 
     assert settings.state_dir == tmp_path / "custom-state"
@@ -41,24 +40,10 @@ def test_configuration_names_preserve_broker_mapping(tmp_path, monkeypatch, pref
     assert settings.alpaca_feed == "sip"
 
 
-@pytest.mark.parametrize("source", ["environment", "dotenv"])
-def test_flyrel_names_take_precedence_within_source(tmp_path, monkeypatch, source):
-    values = {"BROKERBRIDGE_ALPACA_PAPER": "false", "FLYREL_ALPACA_PAPER": "true"}
+def test_environment_overrides_dotenv(tmp_path, monkeypatch):
     env_file = tmp_path / ".env"
-    if source == "environment":
-        for name, value in values.items():
-            monkeypatch.setenv(name, value)
-    else:
-        env_file.write_text("".join(f"{name}={value}\n" for name, value in values.items()))
-    assert Settings(_env_file=env_file).alpaca_paper is True
-
-
-@pytest.mark.parametrize("env_prefix", ["FLYREL_", "BROKERBRIDGE_"])
-def test_environment_overrides_dotenv_across_names(tmp_path, monkeypatch, env_prefix):
-    dotenv_prefix = "BROKERBRIDGE_" if env_prefix == "FLYREL_" else "FLYREL_"
-    env_file = tmp_path / ".env"
-    env_file.write_text(f"{dotenv_prefix}ALPACA_PAPER=true\n")
-    monkeypatch.setenv(f"{env_prefix}ALPACA_PAPER", "false")
+    env_file.write_text("FLYREL_ALPACA_PAPER=true\n")
+    monkeypatch.setenv("FLYREL_ALPACA_PAPER", "false")
     assert Settings(_env_file=env_file).alpaca_paper is False
 
 

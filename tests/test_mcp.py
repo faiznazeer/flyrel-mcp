@@ -8,9 +8,7 @@ from mcp.client.stdio import stdio_client
 
 def test_stdio_round_trip_without_credentials(tmp_path):
     async def run():
-        env = {
-            k: v for k, v in os.environ.items() if not k.startswith(("FLYREL_", "BROKERBRIDGE_"))
-        }
+        env = {k: v for k, v in os.environ.items() if not k.startswith("FLYREL_")}
         env.update(
             {
                 "FLYREL_STATE_DIR": str(tmp_path / "state"),
