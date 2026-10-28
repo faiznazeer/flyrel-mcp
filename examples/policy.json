@@ -1,0 +1,7 @@
+{
+  "read_only": false,
+  "allowed_symbols": ["US:AAPL", "NSE:RELIANCE"],
+  "max_order_value": {"USD": "1000", "INR": "100000"},
+  "max_open_value": {"USD": "5000", "INR": "500000"},
+  "proposal_ttl_seconds": 120
+}

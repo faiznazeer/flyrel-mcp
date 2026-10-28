@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "brokerbridge-mcp"
+version = "0.1.0"
+description = "A self-hosted, broker-independent MCP foundation for India and US markets."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = ["mcp>=1.30,<2", "httpx>=0.28,<1", "pydantic>=2.11,<3", "pydantic-settings>=2.8,<3"]
+
+[project.scripts]
+brokerbridge = "brokerbridge.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/brokerbridge"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.11,<1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

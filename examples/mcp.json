@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "brokerbridge": {
+      "command": "uv",
+      "args": ["--directory", "/absolute/path/to/brokerbridge-mcp", "run", "--locked", "brokerbridge", "serve"]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "request": {
+    "broker_id": "paper",
+    "symbol": "US:AAPL",
+    "side": "buy",
+    "quantity": 2,
+    "limit_price": "100.00",
+    "idempotency_key": "paper-demo-order-001"
+  }
+}
