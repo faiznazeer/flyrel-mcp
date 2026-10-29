@@ -1,51 +1,84 @@
 # Roadmap
 
-The product hypothesis is that consistent data, cross-broker risk and independently enforced
-controls can add value beyond a broker's own connector. A thin wrapper alone does not establish
-that advantage. Validate workflows with users who hold accounts at more than one broker.
+Direction agreed October 29, 2026: try an independent permissions and approval layer for
+individual investors/traders using general-purpose AI assistants. Expand next to individual
+multi-account traders, then agent developers. See the [product decision](product-direction.md)
+for the hypothesis, target boundary and decision criteria.
+
+This is an experiment, not a validated business or a promise of secure/loss-free trading.
+Agreement on this direction does not authorize external execution implementation. All external
+adapters remain read-only until a separate, explicitly authorized execution milestone.
 
 ## Foundation delivered
 
 - Normalized cash-equity models, capability discovery and stdio MCP server.
 - Kite and Alpaca GET-only adapters; zero-credential synthetic local sandbox.
-- Durable proposal/confirmation flow, TTL, idempotency, policy limits and halt switch.
+- Durable synthetic proposal/confirmation flow, TTL, idempotency, local policy limits and halt.
 - Metadata audit log, tests, packaging and CI.
 - Explicit connection/account identities, multiple credential connections per broker, a local
   instrument registry and a credential-free multi-account workflow demo.
 - Per-account current-holding counts, value, broker P&L and daily-change fields, with explicit
   missing-data semantics and a holdings-only CLI/MCP path.
 
-## Next milestones
+These are useful building blocks, not an agent-resistant security boundary or a realistic
+execution simulator. Current local credentials/policy/state are accessible to agents with shell
+access. Local proposal/confirmation tools do not establish independent human approval.
 
-The first selected workflow is cross-broker portfolio review. The [session guide](workflow-validation.md)
-and [broker validation checklist](broker-validation.md) are prepared, with an opt-in read-only
-verification CLI and synthetic contract tests. Alpaca paper-account and Kite Personal account
-reads passed on October 29, 2026. Available Kite holding values matched the UI according to the
-owner. The owner walkthrough found a current-holding/daily-performance summary useful, and
-prioritized actual personal portfolio returns over individual price returns for historical review.
-UI validation of the new performance fields, populated Alpaca mappings, populated Kite
-position/order mappings, history, baseline timing and the multi-user pilot remain pending;
-neither milestone is complete.
+## Next priorities and gates
 
-The next performance milestone is historical personal portfolio return and account growth,
-with dated valuations, external cash flows, transactions, distributions, fees and corporate-action
-handling. Current holding P&L or historical market prices alone must not be presented as that
-account return. No historical performance engine is implemented yet.
+1. **Discover actual tasks and adoption barriers.** Use the [research drafts](community-research.md)
+   and neutral interviews with current, former and non-users. Look for recurring concrete tasks,
+   workarounds and decisions; distinguish spontaneous concerns from prompted concept feedback.
+   Investigate usefulness, setup, data quality, cost and trust in an intermediary alongside safety.
+   No Reddit outreach, measured adoption or multi-user pilot is completed yet.
+2. **Specify and rehearse the independent boundary without broker writes.** Define protected
+   credential/policy administration, typed order intents, independently authenticated exact-order
+   approval, permissions, expiry, rechecks and a durable execution/reconciliation state machine.
+   Exercise bypass attempts, tampering, retries, concurrency and unknown broker outcomes using
+   synthetic inputs. Record what each test establishes and its assumptions. These are design
+   and test milestones; existing local sandbox controls do not implement this boundary.
+3. **Consider a separately authorized broker-paper execution milestone.** Start with one broker,
+   cash equities, limit orders and explicit per-order approval. Implement only after authorization
+   and prerequisites. Validate fills, partial fills, cancellations, restarts, timeout ambiguity,
+   risk accounting and authenticated approval without claiming exactly-once external execution.
+4. **Validate repeated use and control comprehension.** Compare a participant's existing workflow
+   with a consented bounded prototype. Measure completion, time, friction, understanding and
+   voluntary repeat use. Test whether Flyrel changes their actual choice, including whether they
+   would prefer manual execution or broker-native controls. A positive interview is not demand.
+5. **Evaluate live execution separately.** Refresh each applicable market/broker/segment's
+   operational and legal requirements and review the security/recovery evidence before any live
+   execution work. There is no enable-live switch or automatic promotion from broker-paper.
+6. **Expand using evidence.** Add multi-account control scope after a single-account workflow is
+   useful. Expose developer integration interfaces when requested by real users. Organizational
+   multi-user teams, authority over other people's accounts and hosted operation are separate
+   discovery/design decisions, not implied by having multiple local connections.
 
-1. Validate read adapters against user-authorized broker accounts; add recorded, sanitized
-   fixtures and contract tests for corporate actions, auth expiry, pagination and rate limits.
-2. Extend the implemented local registry and multi-account identities with broker-master metadata
-   and a reconciled portfolio with explicit FX timestamps. Current per-account snapshots flag
-   duplicates and missing prices; holdings reconciliation, FX and consolidated exposure remain pending.
-3. Add broker-independent historical datasets and deterministic backtesting with fees,
-   slippage, corporate actions, metrics and out-of-sample evaluation. Avoid arbitrary agent code.
-4. Expand the local simulator with fills, cash, holdings, realized P&L, daily loss limits,
-   exchange calendars and risk limits. Add replayable event data with redaction controls.
-5. Add independently authenticated human approval and broker-paper execution. Approval must
-   bind exact order content, expiry, account and policy version. Agents must not self-approve.
-6. Assess Interactive Brokers and Upstox adapters using current first-party API documents.
-   SDK/MCP availability is a separate question from whether an adapter can be built.
-7. Review each market/broker/segment's legal and operational requirements before any live
-   execution work. Hosted multi-user service and strategy distribution require a separate review.
+## Supporting portfolio and broker validation
 
-No target date or automatic live-trading switch is promised by this roadmap.
+Read correctness remains necessary for useful reviews and future policy decisions. Continue
+fixing account/instrument identity, missing prices, stale inputs and broker mappings as needed.
+Kite holdings remain separate from net positions; Alpaca holdings alias positions. Reconciliation,
+FX timestamps and consolidated exposure are not implemented, and no NAV is fabricated.
+
+Alpaca paper-account and Kite Personal account reads passed on October 29, 2026. The owner
+reported that available Kite holding values matched the UI. The owner walkthrough found a
+current-holding/daily-performance summary useful and requested actual historical portfolio returns.
+UI validation of the newly exposed performance fields, populated Alpaca mappings, populated Kite
+position/order mappings, history, baseline timing and the multi-user pilot remain pending.
+See the [broker record](broker-validation.md) and [portfolio walkthrough](workflow-validation.md).
+
+## Deferred until the selected workflow needs them
+
+- Historical personal portfolio performance and account growth remain a recorded user need.
+  They require dated valuations and cash-flow/transaction context, including distributions,
+  fees and corporate actions. Snapshot P&L is not historical account return.
+- Broad reporting, tax reports and a general strategy-research platform are not the first product.
+- Backtesting remains distinct from personal portfolio performance. If strategy users require it,
+  prefer reproducible rules/data, explicit costs and assumptions and an established engine where
+  appropriate. Do not execute arbitrary agent-generated code with broker credentials.
+- Rich local fills/cash/P&L simulation, broker-master synchronization and more broker adapters
+  follow demonstrated workflow needs; assess new adapters against current primary documentation.
+
+No target date, universal compliance engine, guaranteed profit, maximum-loss guarantee or
+blanket "100% secure" claim is promised. Maintain a clear distinction between plans, tested
+invariants and implemented enforcement.

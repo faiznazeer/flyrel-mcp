@@ -7,6 +7,25 @@ Initial markets: India and US cash equities. Initial adapters: Zerodha Kite and 
 order mutations stay in a local synthetic sandbox. No live-order implementation or enable-live
 flag exists. No broker credentials are needed to run the demo.
 
+## Product direction
+
+Flyrel is experimenting with an independent permissions and approval layer for people using
+general-purpose AI assistants to invest or trade. The intended customer order is individual
+investors/traders, individual multi-account traders, then developers building agents.
+
+The intended promise is explicitly limited trading permissions with independent approval and
+verifiable enforcement. Broker connectivity and portfolio reports support that workflow. Safety
+and adoption barriers are hypotheses to test, not established explanations of why people do or
+do not use AI. Flyrel does not promise guaranteed profits, loss-free trading or "100% security".
+
+The current local setup does not provide that independent boundary: agents with shell access can
+read credentials and change policy/state. Protected credentials, agent-resistant policy controls,
+independent approval and broker execution remain future work. Agreement on product direction
+does not authorize external execution or change the read-only adapters.
+
+See the [product decision](docs/product-direction.md), [roadmap](docs/roadmap.md), and
+[neutral community research drafts](docs/community-research.md).
+
 ## Quick start
 
 Requires Python 3.12+ and [uv](https://docs.astral.sh/uv/).
@@ -59,8 +78,10 @@ historical access depend on broker entitlements. Alpaca defaults to the broker's
 endpoint and IEX stock data; `FLYREL_ALPACA_PAPER=false` selects a live **read-only** account
 snapshot. It does not enable trading. Automated adapter tests use mocked HTTP. User-authorized
 Alpaca paper-account read checks passed on October 29, 2026 for account access, positions,
-holdings, open orders and an IEX quote. Kite account checks, populated-portfolio mapping,
-historical-data checks and broker-UI reconciliation remain pending.
+holdings, open orders and an IEX quote. Kite Personal account/holding/position/day-order reads
+also passed that day, and the owner reported that available holding values matched the UI.
+Populated Alpaca and Kite position/order mappings, historical data, and private UI checks of the
+new performance fields remain pending. See the dated validation record for the exact scope.
 
 Run `uv run flyrel verify-brokers` to explicitly make read-only API checks for both brokers
 (or add `--broker kite` / `--broker alpaca`). The report includes status and row counts, omits
