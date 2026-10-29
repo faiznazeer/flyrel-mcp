@@ -2,8 +2,8 @@
   "provenance": "synthetic contract example; not recorded from an account",
   "account": {"id": "synthetic-alpaca-account", "cash": "1234.56"},
   "positions": [
-    {"asset_class": "us_equity", "symbol": "AAPL", "qty": "1.25", "avg_entry_price": "80.125", "market_value": "125.50"},
-    {"asset_class": "us_equity", "symbol": "MSFT", "qty": "-2", "avg_entry_price": "210.25", "market_value": "-400.50"}
+    {"asset_class": "us_equity", "symbol": "AAPL", "qty": "1.25", "avg_entry_price": "80.125", "market_value": "125.50", "current_price": "100.4", "lastday_price": "98.4", "unrealized_pl": "25.34375", "unrealized_intraday_pl": "2.5", "change_today": "0.02032520325203252"},
+    {"asset_class": "us_equity", "symbol": "MSFT", "qty": "-2", "avg_entry_price": "210.25", "market_value": "-400.50", "current_price": "200.25", "lastday_price": "198.25", "unrealized_pl": "20.0", "unrealized_intraday_pl": "-4.0", "change_today": "0.01008827"}
   ],
   "orders": [
     {"id": "synthetic-order", "asset_class": "us_equity", "symbol": "AAPL", "side": "sell", "qty": "0.25", "limit_price": null, "status": "partially_filled"}

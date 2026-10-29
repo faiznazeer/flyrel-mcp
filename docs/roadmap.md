@@ -12,14 +12,25 @@ that advantage. Validate workflows with users who hold accounts at more than one
 - Metadata audit log, tests, packaging and CI.
 - Explicit connection/account identities, multiple credential connections per broker, a local
   instrument registry and a credential-free multi-account workflow demo.
+- Per-account current-holding counts, value, broker P&L and daily-change fields, with explicit
+  missing-data semantics and a holdings-only CLI/MCP path.
 
 ## Next milestones
 
 The first selected workflow is cross-broker portfolio review. The [session guide](workflow-validation.md)
 and [broker validation checklist](broker-validation.md) are prepared, with an opt-in read-only
-verification CLI and synthetic contract tests. Alpaca paper-account API checks passed on
-October 29, 2026. User sessions, Kite checks, populated-portfolio mappings, history and private
-broker-UI comparisons remain pending; neither milestone is complete.
+verification CLI and synthetic contract tests. Alpaca paper-account and Kite Personal account
+reads passed on October 29, 2026. Available Kite holding values matched the UI according to the
+owner. The owner walkthrough found a current-holding/daily-performance summary useful, and
+prioritized actual personal portfolio returns over individual price returns for historical review.
+UI validation of the new performance fields, populated Alpaca mappings, populated Kite
+position/order mappings, history, baseline timing and the multi-user pilot remain pending;
+neither milestone is complete.
+
+The next performance milestone is historical personal portfolio return and account growth,
+with dated valuations, external cash flows, transactions, distributions, fees and corporate-action
+handling. Current holding P&L or historical market prices alone must not be presented as that
+account return. No historical performance engine is implemented yet.
 
 1. Validate read adapters against user-authorized broker accounts; add recorded, sanitized
    fixtures and contract tests for corporate actions, auth expiry, pagination and rate limits.

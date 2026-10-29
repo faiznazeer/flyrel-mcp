@@ -145,6 +145,23 @@ def test_ambiguous_or_wrong_broker_selection_makes_no_requests(two_accounts):
         service.close()
 
 
+def test_holdings_summary_requires_explicit_connection_and_routes_correctly(two_accounts):
+    settings, _, _, calls = two_accounts
+    service = Service(settings)
+    try:
+        with pytest.raises(ConnectionSelectionError, match="Select connection_id"):
+            service.holdings_summary("alpaca")
+        with pytest.raises(ConnectionSelectionError, match="requested broker"):
+            service.holdings_summary("kite", "us-main")
+        assert calls == [[], []]
+        report = service.holdings_summary("alpaca", "us-second")
+        assert report["accounts"][0]["account_ref"]["account_id"] == "account-two"
+        assert report["connection_id"] == "us-second" and report["environment"] == "live"
+        assert not calls[0] and calls[1]
+    finally:
+        service.close()
+
+
 def test_same_broker_same_account_string_in_distinct_environments_is_not_duplicate(two_accounts):
     settings, _, payloads, _ = two_accounts
     payloads[1]["account"]["id"] = payloads[0]["account"]["id"]

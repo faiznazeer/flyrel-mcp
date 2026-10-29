@@ -8,6 +8,7 @@ from flyrel.config import Settings
 from flyrel.demo import demo_portfolio
 from flyrel.models import Policy
 from flyrel.server import create_server
+from flyrel.service import ConnectionSelectionError, Service
 from flyrel.store import Store
 from flyrel.verification import verify_brokers
 
@@ -27,6 +28,11 @@ def main():
     verify.add_argument("--connection", action="append", help="Select explicit connection IDs")
     verify.add_argument("--history-start", type=datetime.fromisoformat)
     verify.add_argument("--history-end", type=datetime.fromisoformat)
+    holdings = commands.add_parser(
+        "holdings-summary", help="Read per-account holdings value and broker P&L; no quotes/history"
+    )
+    holdings.add_argument("--broker", choices=("kite", "alpaca", "paper"), required=True)
+    holdings.add_argument("--connection", help="Select one explicit connection ID")
     commands.add_parser("halt", help="Disable new local paper orders")
     commands.add_parser("resume", help="Re-enable paper orders after a kill switch")
     policy = commands.add_parser("set-policy", help="Validate and install a local paper policy")
@@ -36,7 +42,22 @@ def main():
         print(json.dumps(demo_portfolio(), indent=2))
         return
     settings = Settings()
-    if args.command == "verify-brokers":
+    if args.command == "holdings-summary":
+        service = None
+        try:
+            service = Service(settings)
+            report = service.holdings_summary(args.broker, args.connection)
+        except ConnectionSelectionError as exc:
+            parser.error(str(exc))
+        except Exception:
+            parser.exit(
+                1, "Holdings read failed; check configuration, credentials and broker access.\n"
+            )
+        finally:
+            if service is not None:
+                service.close()
+        print(json.dumps(report, indent=2))
+    elif args.command == "verify-brokers":
         try:
             report = verify_brokers(
                 settings,

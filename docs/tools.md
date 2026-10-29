@@ -9,9 +9,10 @@
 | `resolve_instrument` | Resolve a registered local ID or canonical symbol; optionally require an explicit broker mapping |
 | `get_quotes` | Up to 50 canonical equity symbols per request, labelled with connection, currency and environment |
 | `get_history` | Optional, registered for Kite/Alpaca; labelled 1Min/1Hour/1Day broker bars (Alpaca raw), at most 31 days; Alpaca capped at 100 pages/50,000 bars |
-| `get_positions` | Normalized positions with account/connection references and registered instrument identity, if known |
-| `get_holdings` | Separate account-labelled broker view; may overlap positions |
-| `get_portfolio_summary` | Optional `connection_ids`; per-connection/account values, unpriced-value flags and duplicate-account warnings; no consolidated NAV |
+| `get_positions` | Normalized positions with account references; optional Alpaca broker performance; no historical returns |
+| `get_holdings` | Account-labelled holdings with optional broker P&L/daily price change; may overlap positions |
+| `get_holdings_summary` | Per-account/currency holding counts, value and broker P&L with missing-data flags; accounts/holdings reads only; no NAV/history |
+| `get_portfolio_summary` | Optional `connection_ids`; separate position values and account holding summaries, missing-data flags and duplicate-account warnings; no consolidated NAV |
 | `get_demo_portfolio` | Fixed synthetic four-account walkthrough and sample instrument metadata; no external reads |
 | `get_policy` | Local sandbox limits and halt state |
 | `propose_order` | Validate a BUY limit request; issue expiring sandbox token |
@@ -31,13 +32,20 @@ Registry search/resolution never makes a broker request. Without a configured re
 returns no entries; unknown instruments remain readable with null `instrument_id`. Instrument
 metadata has its own source/synthetic labels, separate from quote or position provenance.
 
-Local CLI only: `set-policy FILE`, `halt`, `resume`, `check`, `verify-brokers`, `demo-portfolio`, `serve`.
+Local CLI: `set-policy FILE`, `halt`, `resume`, `check`, `verify-brokers`, `demo-portfolio`, `serve`,
+and `holdings-summary --broker BROKER [--connection ID]`.
+Policy modification/resume and broker verification remain CLI-only operations.
 `check` makes no broker requests. `verify-brokers` explicitly reads external accounts, positions,
 holdings, orders and sample quotes, with optional daily history, and prints metadata only. It
 does not record snapshots or imply broker-UI reconciliation. See [validation](broker-validation.md).
 It checks every configured connection for selected brokers; `--connection ID` narrows the selection.
 `demo-portfolio` prints fixed synthetic examples without loading settings or writing state.
 There is no agent-accessible `set_policy` or remote execution API.
+
+`holdings-summary` prints actual holding details, unlike metadata-only `verify-brokers`.
+The [holdings performance guide](holdings-performance.md) defines each field and broker mapping.
+Kite daily price change is not daily monetary P&L; its populated `day_unrealized_pnl` metric is
+unknown. Alpaca daily unrealized P&L is broker-reported. Neither is historical account return.
 
 Planned rather than stubbed: live broker-master instrument discovery, backtest strategy registry, `run_backtest`,
 `compare_backtests`, independently approved broker-paper execution, live order routing,

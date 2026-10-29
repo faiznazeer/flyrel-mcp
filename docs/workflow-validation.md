@@ -1,16 +1,20 @@
 # Validate cross-broker portfolio review
 
-Selected first workflow: compare equity exposure across Kite and Alpaca. This is a validation
-plan, not evidence that users have completed it. Alpaca paper-account API checks passed on
-October 29, 2026; populated-portfolio mappings, Kite account checks, user interviews and broker-UI
-reconciliation remain pending. See the [validation record](broker-validation.md).
+Selected first workflow: review equity holdings across Kite and Alpaca. Alpaca paper-account and
+Kite Personal account API checks passed on October 29, 2026. The owner reported that available
+Kite holding values matched the UI. A first owner walkthrough identified current holding/daily
+performance as useful, with actual personal portfolio returns and account growth as a later need.
+The new holding-performance fields have not yet been compared privately with the broker UI.
+Alpaca is empty, and no measured multi-broker benefit or completed multi-user pilot is established.
+See the [validation record](broker-validation.md).
 
 ## Question to answer
 
 Can someone with both accounts review what they hold, where they hold it, and what remains
 unpriced or unreconciled more quickly and reliably than by switching between broker interfaces?
-The present product can show separate broker records. It cannot yet produce a complete combined
-exposure figure, concentration percentage or NAV. Treat demand for those outputs as input to the
+The present product can show separate broker records and per-account holding value/P&L summaries.
+It cannot yet produce a complete combined exposure figure, concentration percentage or NAV.
+Treat demand for those outputs as input to the
 remaining reconciliation milestone.
 
 ## Offline walkthrough
@@ -60,9 +64,12 @@ their accounts. Do not contact participants or collect their portfolio data auto
 3. Repeat with Flyrel. Discover connections with `list_brokers`, select `connection_id` explicitly
    for brokers with multiple connections, and check `list_accounts` privately,
    then read `get_positions` and `get_holdings` for each broker. Use `list_orders` to review order
-   context and `get_portfolio_summary` to inspect the available position-only snapshots.
+   context, `get_holdings_summary` for current holding value/P&L, and `get_portfolio_summary` for
+   separate position values and holding summaries. Kite daily price change is distinct from
+   daily monetary P&L. Missing broker performance stays unknown; do not infer account returns.
 4. Ask them to explain the result: which account each record belongs to, which records overlap,
    whether the Alpaca account is paper or live, and what is excluded from the portfolio summary.
+   Distinguish current holding P&L from historical portfolio return and account-value growth.
    Do not add Alpaca holdings to positions. Keep Kite holdings separate pending reconciliation.
    Keep the local synthetic `paper` broker out of any real-account comparison.
    Inspect `duplicate_accounts` before treating snapshots from different connections as distinct.

@@ -110,19 +110,28 @@ def create_server(settings: Settings | None = None) -> tuple[FastMCP, Service]:
 
     @tool
     def get_positions(broker_id: str, connection_id: str | None = None) -> list[dict[str, Any]]:
-        """Read account-labelled positions; choose connection_id for multi-account brokers."""
+        """Read labelled positions; Alpaca includes broker performance, never account returns."""
         return service.read(broker_id, "positions", connection_id)
 
     @tool
     def get_holdings(broker_id: str, connection_id: str | None = None) -> list[dict[str, Any]]:
-        """Read account-labelled holdings. Alpaca aliases positions; keep Kite's views separate."""
+        """Read holdings with optional broker P&L/daily price change; not historical returns."""
         return service.read(broker_id, "holdings", connection_id)
+
+    @tool
+    def get_holdings_summary(broker_id: str, connection_id: str | None = None) -> dict[str, Any]:
+        """Read holding counts/value/P&L per account/currency; flag missing data. No quotes/NAV.
+
+        Select connection_id for multi-account brokers. Kite daily price change is not daily
+        monetary P&L. Alpaca holdings alias positions. No history or account-growth calculation.
+        """
+        return service.holdings_summary(broker_id, connection_id)
 
     @tool
     def get_portfolio_summary(
         connection_ids: Annotated[list[str], Field(min_length=1, max_length=50)] | None = None,
     ) -> dict[str, Any]:
-        """Read per-connection/account snapshots; flag duplicates/unpriced values. No FX or NAV."""
+        """Read separate position/holding summaries per account; flag missing data. No FX/NAV."""
         return service.portfolio(connection_ids)
 
     @tool

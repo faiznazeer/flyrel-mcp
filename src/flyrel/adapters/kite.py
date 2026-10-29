@@ -5,7 +5,7 @@ from decimal import Decimal
 
 from flyrel.adapters.base import Interval
 from flyrel.adapters.http import ReadOnlyHTTP
-from flyrel.models import Account, Bar, Order, Position, Quote, validate_range
+from flyrel.models import Account, Bar, Order, Position, PositionPerformance, Quote, validate_range
 
 
 class KiteAdapter(ReadOnlyHTTP):
@@ -79,7 +79,9 @@ class KiteAdapter(ReadOnlyHTTP):
             for c in candles
         ]
 
-    def normalize(self, rows: list[dict], account_id: str) -> list[Position]:
+    def normalize(
+        self, rows: list[dict], account_id: str, *, holdings: bool = False
+    ) -> list[Position]:
         if any(r["exchange"] not in {"NSE", "BSE"} for r in rows):
             raise ValueError("Non-cash segment unsupported; portfolio would be incomplete")
         return [
@@ -92,8 +94,24 @@ class KiteAdapter(ReadOnlyHTTP):
                 quantity=Decimal(str(r["quantity"])) + Decimal(str(r.get("t1_quantity", 0))),
                 average_price=r["average_price"],
                 product=r.get("product", "CNC"),
-                market_value=(Decimal(str(r["quantity"])) + Decimal(str(r.get("t1_quantity", 0))))
-                * Decimal(str(r["last_price"])),
+                market_value=(
+                    (Decimal(str(r["quantity"])) + Decimal(str(r.get("t1_quantity", 0))))
+                    * Decimal(str(r["last_price"]))
+                    if r.get("last_price") is not None
+                    else None
+                ),
+                # Kite position `pnl` can include realized P&L. Only its holdings
+                # response is mapped to the current holding's unrealized P&L.
+                performance=PositionPerformance(
+                    source="kite_holdings",
+                    last_price=r.get("last_price"),
+                    previous_close=r.get("close_price"),
+                    unrealized_pnl=r.get("pnl"),
+                    day_price_change=r.get("day_change"),
+                    day_price_change_percent=r.get("day_change_percentage"),
+                )
+                if holdings
+                else None,
             )
             for r in rows
         ]
@@ -104,7 +122,9 @@ class KiteAdapter(ReadOnlyHTTP):
         )
 
     def holdings(self) -> list[Position]:
-        return self.normalize(self.data("/portfolio/holdings"), self.accounts()[0].account_id)
+        return self.normalize(
+            self.data("/portfolio/holdings"), self.accounts()[0].account_id, holdings=True
+        )
 
     def orders(self) -> list[Order]:
         rows = self.data("/orders")

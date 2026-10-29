@@ -5,7 +5,7 @@
     {"exchange": "NSE", "tradingsymbol": "RELIANCE", "quantity": -2, "average_price": 1010.25, "last_price": 1000.15, "product": "MIS"}
   ], "day": []}},
   "holdings": {"status": "success", "data": [
-    {"exchange": "NSE", "tradingsymbol": "RELIANCE", "quantity": 2, "t1_quantity": 1, "average_price": 900.25, "last_price": 1000.15, "product": "CNC"}
+    {"exchange": "NSE", "tradingsymbol": "RELIANCE", "quantity": 2, "t1_quantity": 1, "average_price": 900.25, "last_price": 1000.15, "close_price": 1010, "pnl": 299.7, "day_change": -9.85, "day_change_percentage": -0.9752475247524752, "product": "CNC"}
   ]},
   "orders": {"status": "success", "data": [
     {"order_id": "synthetic-order", "exchange": "NSE", "tradingsymbol": "RELIANCE", "transaction_type": "SELL", "quantity": 2, "price": 0, "status": "COMPLETE"}

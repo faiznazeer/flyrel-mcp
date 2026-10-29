@@ -87,6 +87,19 @@ class Bar(Model):
     volume: Decimal
 
 
+class PositionPerformance(Model):
+    """Broker snapshot metrics, never a historical or cash-flow-adjusted account return."""
+
+    source: Literal["kite_holdings", "alpaca_positions"]
+    last_price: Decimal | None = None
+    previous_close: Decimal | None = None
+    unrealized_pnl: Decimal | None = None
+    day_unrealized_pnl: Decimal | None = None
+    day_price_change: Decimal | None = None
+    day_price_change_percent: Decimal | None = None
+    price_timestamp: AwareDatetime | None = None
+
+
 class Position(Model):
     environment: Literal["synthetic", "paper", "live"]
     broker_id: str
@@ -97,6 +110,7 @@ class Position(Model):
     average_price: Decimal
     market_value: Decimal | None = None
     product: str
+    performance: PositionPerformance | None = None
 
 
 class OrderRequest(Model):
