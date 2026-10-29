@@ -1,0 +1,42 @@
+{
+  "instruments": [
+    {
+      "instrument_id": "sample-us-aapl",
+      "symbol": "US:AAPL",
+      "name": "AAPL synthetic metadata example",
+      "currency": "USD",
+      "broker_symbols": {"alpaca": "AAPL", "paper": "US:AAPL"},
+      "source": "synthetic-fixture",
+      "synthetic": true
+    },
+    {
+      "instrument_id": "sample-us-msft",
+      "symbol": "US:MSFT",
+      "name": "MSFT synthetic metadata example",
+      "currency": "USD",
+      "broker_symbols": {"alpaca": "MSFT"},
+      "source": "synthetic-fixture",
+      "synthetic": true
+    },
+    {
+      "instrument_id": "sample-nse-reliance",
+      "symbol": "NSE:RELIANCE",
+      "name": "RELIANCE NSE synthetic metadata example",
+      "currency": "INR",
+      "venue": "NSE",
+      "broker_symbols": {"kite": "NSE:RELIANCE", "paper": "NSE:RELIANCE"},
+      "source": "synthetic-fixture",
+      "synthetic": true
+    },
+    {
+      "instrument_id": "sample-bse-reliance",
+      "symbol": "BSE:RELIANCE",
+      "name": "RELIANCE BSE synthetic metadata example",
+      "currency": "INR",
+      "venue": "BSE",
+      "broker_symbols": {"kite": "BSE:RELIANCE"},
+      "source": "synthetic-fixture",
+      "synthetic": true
+    }
+  ]
+}

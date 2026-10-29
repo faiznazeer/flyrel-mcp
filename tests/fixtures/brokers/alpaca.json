@@ -1,0 +1,16 @@
+{
+  "provenance": "synthetic contract example; not recorded from an account",
+  "account": {"id": "synthetic-alpaca-account", "cash": "1234.56"},
+  "positions": [
+    {"asset_class": "us_equity", "symbol": "AAPL", "qty": "1.25", "avg_entry_price": "80.125", "market_value": "125.50"},
+    {"asset_class": "us_equity", "symbol": "MSFT", "qty": "-2", "avg_entry_price": "210.25", "market_value": "-400.50"}
+  ],
+  "orders": [
+    {"id": "synthetic-order", "asset_class": "us_equity", "symbol": "AAPL", "side": "sell", "qty": "0.25", "limit_price": null, "status": "partially_filled"}
+  ],
+  "quotes": {"quotes": {"AAPL": {"bp": 99.91, "ap": 100.11, "t": "2026-01-05T15:00:00Z"}}},
+  "history": {
+    "": {"symbol": "AAPL", "bars": [{"t": "2026-01-05T05:00:00Z", "o": 200, "h": 202, "l": 198, "c": 200, "v": 100}], "next_page_token": "synthetic-next"},
+    "synthetic-next": {"symbol": "AAPL", "bars": [{"t": "2026-01-06T05:00:00Z", "o": 100, "h": 101, "l": 99, "c": 100, "v": 200}], "next_page_token": null}
+  }
+}

@@ -2,25 +2,43 @@
 
 | Tool | Scope |
 | --- | --- |
-| `list_brokers` | Configured connections, market and capability discovery |
-| `get_capabilities` | One broker's supported operations |
-| `list_accounts` | One broker's accounts; environment explicitly labelled |
-| `get_quotes` | Up to 50 canonical equity symbols per request |
-| `get_history` | Optional, registered for Kite/Alpaca; 1Min/1Hour/1Day, raw bars, at most 31 days |
-| `get_positions` | Broker-specific normalized positions |
-| `get_holdings` | Separate broker view; may overlap positions |
-| `get_portfolio_summary` | Position snapshots per broker and currency; explicitly incomplete NAV |
+| `list_brokers` | One row per connection: `connection_id`, actual `broker_id`/`id`, environment, markets and capabilities; no credentials |
+| `get_capabilities` | One connection's supported operations |
+| `list_accounts` | Broker-returned account IDs with structured `account_ref`, connection, currency and environment |
+| `search_instruments` | Search configured local instrument metadata; optional broker filter; 1–100 results |
+| `resolve_instrument` | Resolve a registered local ID or canonical symbol; optionally require an explicit broker mapping |
+| `get_quotes` | Up to 50 canonical equity symbols per request, labelled with connection, currency and environment |
+| `get_history` | Optional, registered for Kite/Alpaca; labelled 1Min/1Hour/1Day broker bars (Alpaca raw), at most 31 days; Alpaca capped at 100 pages/50,000 bars |
+| `get_positions` | Normalized positions with account/connection references and registered instrument identity, if known |
+| `get_holdings` | Separate account-labelled broker view; may overlap positions |
+| `get_portfolio_summary` | Optional `connection_ids`; per-connection/account values, unpriced-value flags and duplicate-account warnings; no consolidated NAV |
+| `get_demo_portfolio` | Fixed synthetic four-account walkthrough and sample instrument metadata; no external reads |
 | `get_policy` | Local sandbox limits and halt state |
 | `propose_order` | Validate a BUY limit request; issue expiring sandbox token |
 | `confirm_order` | Persist an open local order; no external execution |
-| `list_orders` | All local orders, Alpaca open snapshot, or Kite day book |
+| `list_orders` | Account/connection-labelled local orders, Alpaca open snapshot, or Kite day book |
 | `get_order_status` | Local sandbox order only |
 | `cancel_order` | Local sandbox order only |
 | `kill_switch` | Block new sandbox orders persistently |
 
-Local CLI only: `set-policy FILE`, `halt`, `resume`, `check`, `serve`.
+Broker read tools accept optional `connection_id`. It is required when the requested broker has
+multiple configured connections; a connection for another broker is rejected. Market-data reads
+identify the connection/environment but do not invent a broker account association. Account refs
+are structured `(broker_id, account_id, environment)` identities. Connection aliases do not replace
+actual broker IDs. Mutation tools continue to address only the single local `paper` sandbox.
+
+Registry search/resolution never makes a broker request. Without a configured registry search
+returns no entries; unknown instruments remain readable with null `instrument_id`. Instrument
+metadata has its own source/synthetic labels, separate from quote or position provenance.
+
+Local CLI only: `set-policy FILE`, `halt`, `resume`, `check`, `verify-brokers`, `demo-portfolio`, `serve`.
+`check` makes no broker requests. `verify-brokers` explicitly reads external accounts, positions,
+holdings, orders and sample quotes, with optional daily history, and prints metadata only. It
+does not record snapshots or imply broker-UI reconciliation. See [validation](broker-validation.md).
+It checks every configured connection for selected brokers; `--connection ID` narrows the selection.
+`demo-portfolio` prints fixed synthetic examples without loading settings or writing state.
 There is no agent-accessible `set_policy` or remote execution API.
 
-Planned rather than stubbed: instrument search, backtest strategy registry, `run_backtest`,
+Planned rather than stubbed: live broker-master instrument discovery, backtest strategy registry, `run_backtest`,
 `compare_backtests`, independently approved broker-paper execution, live order routing,
 and market-specific compliance services. Unsupported features do not appear as working tools.

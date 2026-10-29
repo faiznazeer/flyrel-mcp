@@ -1,15 +1,6 @@
-import os
-
 import pytest
 
 from flyrel.config import Settings
-
-
-@pytest.fixture(autouse=True)
-def clean_settings_environment(monkeypatch):
-    for name in os.environ:
-        if name.startswith("FLYREL_"):
-            monkeypatch.delenv(name)
 
 
 @pytest.mark.parametrize("source", ["environment", "dotenv"])

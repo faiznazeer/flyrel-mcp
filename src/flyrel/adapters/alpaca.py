@@ -70,7 +70,8 @@ class AlpacaAdapter(ReadOnlyHTTP):
             "limit": 10000,
         }
         bars = []
-        while True:
+        seen_tokens = set()
+        for _ in range(100):
             data = self.get(
                 f"https://data.alpaca.markets/v2/stocks/{self.raw(symbol)}/bars", params=params
             ).json(parse_float=Decimal)
@@ -86,12 +87,18 @@ class AlpacaAdapter(ReadOnlyHTTP):
                 )
                 for b in data.get("bars") or []
             )
+            if len(bars) > 50000:
+                raise ValueError("History too large; request a shorter range")
             token = data.get("next_page_token")
             if not token:
                 return bars
-            if len(bars) >= 50000 or params.get("page_token") == token:
+            if token in seen_tokens:
+                raise ValueError("History pagination repeated a token; snapshot is incomplete")
+            if len(bars) >= 50000:
                 raise ValueError("History too large; request a shorter range")
+            seen_tokens.add(token)
             params["page_token"] = token
+        raise ValueError("History pagination exceeded 100 pages; request a shorter range")
 
     def positions(self) -> list[Position]:
         # USD is deliberately scoped to US equities; derivatives and crypto are future work.

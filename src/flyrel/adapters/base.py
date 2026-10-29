@@ -8,6 +8,7 @@ Interval = Literal["1Min", "1Hour", "1Day"]
 
 class BrokerAdapter(Protocol):
     id: str
+    environment: str
     markets: tuple[str, ...]
     capabilities: frozenset[str]
 

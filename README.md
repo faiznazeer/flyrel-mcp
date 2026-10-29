@@ -37,6 +37,12 @@ Paper orders remain open until cancelled; they never fill, change positions, res
 or reach an external broker. Only whole-share BUY limit orders are supported. This is an order
 lifecycle sandbox, not a realistic execution, P&L, or backtesting simulator.
 
+For a credential-free multi-account portfolio walkthrough, run `uv run flyrel demo-portfolio`
+or call `get_demo_portfolio` from MCP. It shows four invented accounts with explicit synthetic
+labels, separate broker holdings, fractional/short positions and an unpriced position. The
+fixtures are fixed at January 1, 2026. The CLI demo loads no credentials, connects to no broker
+and writes no local state. Follow the [offline walkthrough](docs/workflow-validation.md#offline-walkthrough).
+
 ## Optional broker connections
 
 Copy `.env.example` to `.env` and configure your own keys locally. Never put keys in chat,
@@ -51,13 +57,32 @@ issues, examples, or commits. The server reads `.env` but does not create tokens
 Kite tokens must be obtained/renewed through the broker's supported login flow. Market data and
 historical access depend on broker entitlements. Alpaca defaults to the broker's paper account
 endpoint and IEX stock data; `FLYREL_ALPACA_PAPER=false` selects a live **read-only** account
-snapshot. It does not enable trading. External adapter tests use mocked HTTP; no real account
-has been connected or verified for this initial commit.
+snapshot. It does not enable trading. Automated adapter tests use mocked HTTP. User-authorized
+Alpaca paper-account read checks passed on October 29, 2026 for account access, positions,
+holdings, open orders and an IEX quote. Kite account checks, populated-portfolio mapping,
+historical-data checks and broker-UI reconciliation remain pending.
+
+Run `uv run flyrel verify-brokers` to explicitly make read-only API checks for both brokers
+(or add `--broker kite` / `--broker alpaca`). The report includes status and row counts, omits
+account details, and creates no local state. Missing credentials or failed checks return exit
+code 1. Optional `--history-start` and `--history-end` add daily-bar checks. Follow the
+[broker validation checklist](docs/broker-validation.md) for private broker-UI comparison and
+the [workflow validation guide](docs/workflow-validation.md) for the first user sessions.
+
+Multiple accounts at the same broker use named credential connections in
+`FLYREL_BROKER_CONNECTIONS`. Read tools accept `connection_id` and require it when a broker has
+multiple configured connections. Broker-returned account IDs, broker IDs and environments stay
+separate from those local names. See [multiple accounts and local instruments](docs/multi-account.md).
 
 Portfolio snapshots preserve currencies and broker views. The starter does not report consolidated
 NAV: it excludes cash and FX conversion, and keeps Kite holdings separate to avoid silently
 double-counting delivery positions. Alpaca holdings alias positions. Unsupported non-equity
 positions fail explicitly rather than disappearing from a purported complete portfolio.
+Snapshots now include per-account values and flag duplicate accounts exposed by different
+connections. A currency with an unpriced position has a null full position value, alongside an
+explicit partial priced value. Neither is consolidated NAV. The optional local instrument
+registry assigns user-maintained IDs; unknown symbols stay unregistered rather than receiving
+guessed identities. Registry metadata is not a live broker instrument master.
 
 ## Local policy and state
 
