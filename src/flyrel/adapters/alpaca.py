@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from flyrel.adapters.base import Interval
 from flyrel.adapters.http import ReadOnlyHTTP
-from flyrel.models import Account, Bar, Order, Position, Quote, validate_range
+from flyrel.models import Account, Bar, Order, Position, PositionPerformance, Quote, validate_range
 
 
 class AlpacaAdapter(ReadOnlyHTTP):
@@ -117,6 +117,18 @@ class AlpacaAdapter(ReadOnlyHTTP):
                 average_price=p["avg_entry_price"],
                 market_value=p["market_value"],
                 product="equity",
+                performance=PositionPerformance(
+                    source="alpaca_positions",
+                    last_price=p.get("current_price"),
+                    previous_close=p.get("lastday_price"),
+                    unrealized_pnl=p.get("unrealized_pl"),
+                    day_unrealized_pnl=p.get("unrealized_intraday_pl"),
+                    day_price_change_percent=(
+                        Decimal(str(p["change_today"])) * 100
+                        if p.get("change_today") is not None
+                        else None
+                    ),
+                ),
             )
             for p in data
         ]

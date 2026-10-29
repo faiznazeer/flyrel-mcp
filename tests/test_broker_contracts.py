@@ -25,6 +25,13 @@ def test_alpaca_portfolio_contract_keeps_fractional_short_and_environment(broker
     assert all(p.account_id == account.account_id and p.currency == "USD" for p in positions)
     assert all(p.environment == ("paper" if paper else "live") for p in positions)
     assert adapter.holdings() == positions
+    assert positions[0].performance.unrealized_pnl == Decimal("25.34375")
+    assert positions[0].performance.day_price_change_percent == Decimal("2.032520325203252")
+    assert positions[1].performance.day_price_change_percent == Decimal("1.008827")
+    # A rising asset price is a loss for this short position. Preserve broker P&L signs.
+    assert positions[1].performance.day_unrealized_pnl == Decimal("-4.0")
+    assert positions[1].performance.unrealized_pnl == Decimal("20.0")
+    assert positions[1].performance.price_timestamp is None
     order = adapter.orders()[0]
     assert order.side == "sell" and order.status == "partially_filled"
     assert order.quantity == Decimal("0.25") and order.limit_price is None
@@ -44,6 +51,14 @@ def test_kite_portfolio_contract_keeps_separate_views_and_unsettled_quantity(bro
     assert position.account_id == holding.account_id == account.account_id
     assert holding.broker_id == "kite" and holding.environment == "live"
     assert holding.currency == "INR"
+    assert holding.performance.source == "kite_holdings"
+    assert holding.performance.unrealized_pnl == Decimal("299.7")
+    assert holding.performance.day_price_change == Decimal("-9.85")
+    assert holding.performance.day_price_change_percent == Decimal("-0.9752475247524752")
+    assert holding.performance.previous_close == Decimal("1010")
+    assert holding.performance.day_unrealized_pnl is None
+    assert holding.performance.price_timestamp is None
+    assert position.performance is None
     order = adapter.orders()[0]
     assert order.status == "COMPLETE" and order.side == "sell"
     assert order.environment == "live"

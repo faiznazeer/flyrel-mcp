@@ -2,10 +2,22 @@
 
 Prepared October 29, 2026 for the cross-broker portfolio workflow. User-authorized Alpaca
 paper-account API checks passed at 16:27 UTC on that date: account access, positions, holdings,
-open orders and one IEX quote. Credentials were used temporarily for verification. No account
-responses or credentials were saved in the project. Populated-portfolio mapping, historical data,
-Kite account checks and private broker-UI reconciliation remain unverified. Committed fixtures
-remain synthetic contract examples, not account recordings.
+open orders and one IEX quote. No account responses or credentials were committed. Committed
+fixtures remain synthetic contract examples, not account recordings.
+
+Kite Personal account/profile, holdings, positions and day-order-book reads passed at 17:07 UTC
+on October 29, 2026. The owner subsequently reported that the available holding values matched
+the broker UI; that comparison was user-reported, not independently observed by the assistant.
+Positions and orders were empty, so populated mappings for those collections remain unverified.
+No Kite quote or history request was made. The newly exposed performance fields still require
+a private UI comparison. Alpaca is a newly set-up empty paper account; its populated-portfolio
+mapping, history and private UI comparison remain unverified.
+
+The new `holdings-summary` CLI was also exercised against the configured Kite Personal account
+and empty Alpaca paper account on October 29, 2026. Kite returned complete holding-value and
+unrealized-P&L fields, while daily monetary P&L correctly remained unavailable. Only metadata
+was retained from those smoke checks. This verifies parsing and summary behavior, not a separate
+UI comparison of the newly exposed performance fields or populated Alpaca mappings.
 
 ## Run connectivity and mapping checks
 
@@ -38,6 +50,12 @@ are attempted. An empty collection verifies connectivity and shape only, not pop
 
 `check` remains an offline configuration inspection. `verify-brokers` is an opt-in local CLI,
 not an MCP tool. A passing report does not verify economic correctness or broker UI parity.
+
+For Kite Personal, `holdings-summary --broker kite` uses accounts/holdings only, with no quote
+probe. It prints actual holding details and performance, not a metadata-only verification report.
+The recorded broader Kite account checks above used selected read-only adapter methods without
+the quote probe; they do not constitute a passing full `verify-brokers` run. See the
+[holdings performance guide](holdings-performance.md).
 
 ## Compare with broker UI privately
 
@@ -92,11 +110,18 @@ Checked against first-party documentation October 29, 2026:
 
 - [x] Workflow protocol and pass/fail criteria prepared.
 - [x] Metadata-only read verification command and synthetic contract coverage implemented.
-- [ ] Authorized Kite account checks and private UI comparison completed.
+- [x] Kite account reads and owner-reported UI comparison of available holding values completed October 29, 2026.
+- [ ] Kite populated position/order mappings, newly exposed performance fields and history compared privately with broker UI/data.
 - [x] Authorized Alpaca paper-account API connectivity/normalization checks completed October 29, 2026.
 - [ ] Alpaca populated-portfolio mappings, history and private UI comparison completed.
 - [ ] Corporate-action/entitlement edge cases checked against actual broker data.
 - [ ] Any necessary sanitized reproductions reviewed and added with honest provenance.
 - [ ] User sessions completed and a continue/change/stop decision recorded.
+
+The first owner walkthrough identified daily/current-holding P&L as useful before historical
+returns, and actual personal portfolio returns/account growth as a later priority. This is one
+owner's qualitative feedback, with one populated broker and an empty broker-paper account.
+Baseline timing, review frequency, measured benefit and the planned multi-user pilot remain
+uncompleted. Private session notes and account-view artifacts stay under ignored `.state/`.
 
 Read-only API access, user validation and later execution authorization are separate milestones.

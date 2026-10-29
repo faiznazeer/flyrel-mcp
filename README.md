@@ -78,6 +78,20 @@ Portfolio snapshots preserve currencies and broker views. The starter does not r
 NAV: it excludes cash and FX conversion, and keeps Kite holdings separate to avoid silently
 double-counting delivery positions. Alpaca holdings alias positions. Unsupported non-equity
 positions fail explicitly rather than disappearing from a purported complete portfolio.
+
+For a current-holdings review, call `get_holdings_summary` or run:
+
+```bash
+uv run flyrel holdings-summary --broker kite
+```
+
+This uses account/holding reads only, including on Kite Personal. It shows holding count, market
+value and broker-reported unrealized P&L per account/currency, with explicit missing-data flags.
+Per-holding daily price changes are distinct from monetary daily P&L: Kite provides the former;
+Alpaca also supplies daily unrealized P&L. The existing portfolio summary includes holding metrics
+separately from position values. No historical return, account-growth calculation or NAV is
+implied. See [holdings performance](docs/holdings-performance.md).
+
 Snapshots now include per-account values and flag duplicate accounts exposed by different
 connections. A currency with an unpriced position has a null full position value, alongside an
 explicit partial priced value. Neither is consolidated NAV. The optional local instrument

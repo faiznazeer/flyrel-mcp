@@ -1,4 +1,4 @@
-"""Position-only snapshots with explicit account boundaries and missing-value reporting."""
+"""Separate position/holding snapshots with account boundaries and explicit missing values."""
 
 from datetime import datetime
 from decimal import Decimal
@@ -78,6 +78,93 @@ def position_values(positions: list[Position]) -> dict:
     }
 
 
+def holding_metrics(holdings: list[Position]) -> dict:
+    """Aggregate one account/currency's holdings, never add holdings to positions."""
+
+    def metric(values: list[Decimal | None]) -> dict:
+        missing = sum(value is None for value in values)
+        known = sum((value for value in values if value is not None), Decimal(0))
+        return {
+            "value": None if missing else str(known),
+            "known_value": str(known),
+            "complete": missing == 0,
+            "missing_count": missing,
+        }
+
+    return {
+        "holding_count": len(holdings),
+        "market_value": metric([h.market_value for h in holdings]),
+        "unrealized_pnl": metric(
+            [h.performance.unrealized_pnl if h.performance else None for h in holdings]
+        ),
+        "day_unrealized_pnl": metric(
+            [h.performance.day_unrealized_pnl if h.performance else None for h in holdings]
+        ),
+    }
+
+
+def holdings_relationship(broker_id: str) -> str:
+    return {
+        "alpaca": "alias_of_positions",
+        "kite": "separate_unreconciled",
+        "paper": "empty_local_sandbox",
+    }[broker_id]
+
+
+HOLDINGS_NOTE = (
+    "Current holdings only, one summary per account and currency. Daily price change is not "
+    "daily monetary P&L; do not multiply it by current quantities to infer trading returns. "
+    "Broker P&L is not total investment return: no realized gains, distributions, fees, cash "
+    "flows, FX or consolidated NAV. Observation time is not a price timestamp."
+)
+
+
+def holdings_snapshot(
+    *,
+    connection_id: str,
+    broker_id: str,
+    environment: str,
+    accounts: list[Account],
+    holdings: list[Position],
+    registry: InstrumentRegistry,
+    observed_at: datetime,
+) -> dict:
+    if not accounts or len({(a.account_id, a.currency) for a in accounts}) != len(accounts):
+        raise ValueError("Accounts must be nonempty and unique within a connection")
+    context = dict(
+        broker_id=broker_id,
+        connection_id=connection_id,
+        environment=environment,
+        registry=registry,
+    )
+    rows = label_rows(holdings, **context, accounts=accounts)
+    return {
+        "connection_id": connection_id,
+        "broker_id": broker_id,
+        "environment": environment,
+        "synthetic": environment == "synthetic",
+        "observed_at": observed_at.isoformat(),
+        "accounts": [
+            {
+                **{k: v for k, v in account.items() if k != "cash"},
+                "holdings_summary": holding_metrics(
+                    [
+                        h
+                        for h in holdings
+                        if h.account_id == account["account_id"]
+                        and h.currency == account["currency"]
+                    ]
+                ),
+            }
+            for account in label_rows(accounts, **context)
+        ],
+        "holdings": rows,
+        "holdings_relationship": holdings_relationship(broker_id),
+        "complete_consolidated_nav": False,
+        "note": HOLDINGS_NOTE,
+    }
+
+
 def portfolio_snapshot(
     *,
     connection_id: str,
@@ -100,6 +187,8 @@ def portfolio_snapshot(
     account_rows = label_rows(accounts, **context)
     position_rows = label_rows(positions, **context, accounts=accounts)
     holding_rows = label_rows(holdings, **context, accounts=accounts)
+    # Alpaca's holdings are the same collection as positions, not a second book.
+    performance_rows = positions if broker_id == "alpaca" else holdings
     return {
         "connection_id": connection_id,
         "broker_id": broker_id,
@@ -117,17 +206,22 @@ def portfolio_snapshot(
                         and p.currency == account["currency"]
                     ]
                 ),
+                "holdings_summary": holding_metrics(
+                    [
+                        h
+                        for h in performance_rows
+                        if h.account_id == account["account_id"]
+                        and h.currency == account["currency"]
+                    ]
+                ),
             }
             for account in account_rows
         ],
         **position_values(positions),
         "positions": position_rows,
         "holdings_separate_view": holding_rows,
-        "holdings_relationship": "alias_of_positions"
-        if broker_id == "alpaca"
-        else "separate_unreconciled"
-        if broker_id == "kite"
-        else "empty_local_sandbox",
+        "holdings_relationship": holdings_relationship(broker_id),
+        "holdings_performance_note": HOLDINGS_NOTE,
     }
 
 

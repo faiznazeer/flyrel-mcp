@@ -6,7 +6,13 @@ from flyrel.adapters.paper import PaperAdapter
 from flyrel.config import Settings
 from flyrel.instruments import InstrumentRegistry
 from flyrel.models import Policy, currency_for
-from flyrel.portfolio import account_ref, label_rows, portfolio_report, portfolio_snapshot
+from flyrel.portfolio import (
+    account_ref,
+    holdings_snapshot,
+    label_rows,
+    portfolio_report,
+    portfolio_snapshot,
+)
 from flyrel.store import Store
 
 
@@ -98,6 +104,18 @@ class Service:
                     broker_id, matching[0].account_id, adapter.environment
                 )
         return result
+
+    def holdings_summary(self, broker_id: str, connection_id: str | None = None):
+        connection_id, adapter = self.connection(broker_id, "holdings", connection_id)
+        return holdings_snapshot(
+            connection_id=connection_id,
+            broker_id=broker_id,
+            environment=adapter.environment,
+            accounts=adapter.accounts(),
+            holdings=adapter.holdings(),
+            registry=self.registry,
+            observed_at=datetime.now(UTC),
+        )
 
     def portfolio(self, connection_ids: list[str] | None = None):
         selected = list(self.adapters) if connection_ids is None else connection_ids

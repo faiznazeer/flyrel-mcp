@@ -8,6 +8,16 @@ default registry is empty. Unknown symbols retain null IDs. Duplicate/ambiguous 
 market/currency/mapping labels fail validation. NSE and BSE listings remain distinct; no security
 equivalence, symbol-change history, corporate-action linking or derivatives registry is implied.
 
+`PositionPerformance` preserves optional broker snapshot prices and P&L. Kite holdings map P&L
+and daily per-unit price changes; Kite net-position P&L is not treated as unrealized holding P&L.
+Alpaca positions preserve unrealized and daily unrealized P&L, converting fractional daily price
+change into percentage points. Missing fields remain unknown, and price timestamps are not
+invented. `portfolio.py` summarizes holding records per account/currency with complete versus
+partial sums. Alpaca aliases are counted once; Kite holdings remain separate from net positions.
+The holdings-only service/CLI/MCP path makes no quote, historical or order requests. See the
+[field definitions](holdings-performance.md). None of these snapshot metrics is NAV or historical
+personal portfolio return.
+
 `adapters/base.py` describes the broker read interface. Each adapter advertises capabilities;
 the service rejects unsupported operations. History tools are registered only when a connected
 adapter offers history. External adapters use a shared GET-only HTTP helper with fixed broker

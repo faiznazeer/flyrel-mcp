@@ -32,6 +32,13 @@ def test_stdio_round_trip_without_credentials(tmp_path):
                 tools = {t.name for t in (await session.list_tools()).tools}
                 assert {"propose_order", "confirm_order", "get_quotes", "kill_switch"} <= tools
                 assert "set_policy" not in tools and "get_history" not in tools
+                holdings = await session.call_tool("get_holdings_summary", {"broker_id": "paper"})
+                assert not holdings.isError
+                assert holdings.structuredContent["synthetic"]
+                assert (
+                    holdings.structuredContent["accounts"][0]["holdings_summary"]["holding_count"]
+                    == 0
+                )
                 demo = await session.call_tool("get_demo_portfolio", {})
                 assert not demo.isError and demo.structuredContent["synthetic"]
                 assert len(demo.structuredContent["brokers"]) == 4
@@ -94,6 +101,15 @@ def test_portfolio_summary_keeps_currencies_environments_and_holdings_separate(
         assert snapshots["alpaca"]["positions_value_by_currency"] == {"USD": "-275.00"}
         assert len(snapshots["kite"]["holdings_separate_view"]) == 1
         assert snapshots["alpaca"]["holdings_separate_view"] == []
+        assert (
+            snapshots["kite"]["accounts"][0]["holdings_summary"]["market_value"]["value"]
+            == "3000.45"
+        )
+        assert snapshots["alpaca"]["accounts"][0]["holdings_summary"]["holding_count"] == 2
+        assert (
+            snapshots["alpaca"]["accounts"][0]["holdings_summary"]["day_unrealized_pnl"]["value"]
+            == "-1.5"
+        )
         assert snapshots["kite"]["positions"][0]["account_id"] == "synthetic-kite-account"
 
     try:
