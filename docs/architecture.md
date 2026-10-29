@@ -2,8 +2,11 @@
 
 `models.py` defines immutable validated models using decimal monetary values. Canonical symbols
 are `NSE:RELIANCE`, `BSE:RELIANCE`, or `US:AAPL`. The US prefix identifies a market, not a listing
-venue. This starter supports cash equities; identifiers for derivatives, corporate actions,
-dual listings and delisted instruments need a richer instrument registry later.
+venue. `instruments.py` loads an optional user-maintained JSON registry with explicit local IDs,
+symbols, currencies, optional US listing venues, NSE/BSE venues and broker symbol mappings. The
+default registry is empty. Unknown symbols retain null IDs. Duplicate/ambiguous IDs and conflicting
+market/currency/mapping labels fail validation. NSE and BSE listings remain distinct; no security
+equivalence, symbol-change history, corporate-action linking or derivatives registry is implied.
 
 `adapters/base.py` describes the broker read interface. Each adapter advertises capabilities;
 the service rejects unsupported operations. History tools are registered only when a connected
@@ -12,8 +15,27 @@ hosts, timeouts, sanitized transport errors and no order-write methods. Broker r
 are mapped into normalized models. The paper adapter supplies fixed, clearly labelled fixtures.
 
 `service.py` constructs adapters from local configuration and reloads policy before decisions.
-There is one credential set per broker in this version. Multiple accounts at the same broker,
-OAuth enrollment, refresh workflows, and account-level routing are not implemented.
+Flat credential fields define the default Kite/Alpaca connections. `broker_connections` adds named
+credential sets, including multiple accounts at one broker. Adapter dictionary keys are connection
+IDs; adapter IDs and returned broker account IDs are unchanged. Read routing rejects ambiguity and
+broker/connection mismatches before requests. Account refs contain broker ID, actual account ID
+and environment. `portfolio.py` validates account/currency ownership, retains separate connection
+and account snapshots, flags duplicate account identities, and distinguishes partial priced value
+from a null full value when pricing is incomplete. Observed times are retrieval times, not proof
+of synchronized or fresh broker valuations. No cash, FX, cross-account netting or Kite holdings
+reconciliation is implemented. OAuth enrollment and refresh workflows remain unimplemented.
+
+`verification.py` powers the opt-in local `verify-brokers` command. It shares adapter construction
+with the service but creates no SQLite state and exposes no new MCP tool. Its report contains
+metadata only; raw account responses and schema-validation errors are never printed. It stops
+reads on the first failure for each connection without automatic retries, then checks the next.
+Alpaca history pagination has cycle detection, a 100-page bound and a 50,000-bar bound.
+
+`demo.py` builds deterministic synthetic portfolio snapshots with the same normalization and
+valuation helpers. The CLI demo runs before settings are loaded and creates no state. Its MCP
+equivalent is a separately labelled tool; it never inserts accounts into external adapter routing.
+Sample instrument metadata is packaged under `data/` and used only by the demo unless explicitly
+chosen as a local registry. Workflow rehearsal is not real-user or real-account validation.
 
 `store.py` persists local sandbox proposals, order results, halt state and audit metadata in
 SQLite. Confirmation validates token hash and TTL, checks an idempotency key, rechecks current

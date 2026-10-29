@@ -10,13 +10,22 @@ that advantage. Validate workflows with users who hold accounts at more than one
 - Kite and Alpaca GET-only adapters; zero-credential synthetic local sandbox.
 - Durable proposal/confirmation flow, TTL, idempotency, policy limits and halt switch.
 - Metadata audit log, tests, packaging and CI.
+- Explicit connection/account identities, multiple credential connections per broker, a local
+  instrument registry and a credential-free multi-account workflow demo.
 
 ## Next milestones
 
+The first selected workflow is cross-broker portfolio review. The [session guide](workflow-validation.md)
+and [broker validation checklist](broker-validation.md) are prepared, with an opt-in read-only
+verification CLI and synthetic contract tests. Alpaca paper-account API checks passed on
+October 29, 2026. User sessions, Kite checks, populated-portfolio mappings, history and private
+broker-UI comparisons remain pending; neither milestone is complete.
+
 1. Validate read adapters against user-authorized broker accounts; add recorded, sanitized
    fixtures and contract tests for corporate actions, auth expiry, pagination and rate limits.
-2. Introduce an instrument registry, broker/account identities and a reconciled portfolio with
-   explicit FX timestamps. Support multiple accounts within one broker.
+2. Extend the implemented local registry and multi-account identities with broker-master metadata
+   and a reconciled portfolio with explicit FX timestamps. Current per-account snapshots flag
+   duplicates and missing prices; holdings reconciliation, FX and consolidated exposure remain pending.
 3. Add broker-independent historical datasets and deterministic backtesting with fees,
    slippage, corporate actions, metrics and out-of-sample evaluation. Avoid arbitrary agent code.
 4. Expand the local simulator with fills, cash, holdings, realized P&L, daily loss limits,

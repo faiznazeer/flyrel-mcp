@@ -1,0 +1,19 @@
+{
+  "provenance": "synthetic contract example; not recorded from an account",
+  "profile": {"status": "success", "data": {"user_id": "synthetic-kite-account"}},
+  "positions": {"status": "success", "data": {"net": [
+    {"exchange": "NSE", "tradingsymbol": "RELIANCE", "quantity": -2, "average_price": 1010.25, "last_price": 1000.15, "product": "MIS"}
+  ], "day": []}},
+  "holdings": {"status": "success", "data": [
+    {"exchange": "NSE", "tradingsymbol": "RELIANCE", "quantity": 2, "t1_quantity": 1, "average_price": 900.25, "last_price": 1000.15, "product": "CNC"}
+  ]},
+  "orders": {"status": "success", "data": [
+    {"order_id": "synthetic-order", "exchange": "NSE", "tradingsymbol": "RELIANCE", "transaction_type": "SELL", "quantity": 2, "price": 0, "status": "COMPLETE"}
+  ]},
+  "quotes": {"status": "success", "data": {"NSE:RELIANCE": {"last_price": 1000.15}}},
+  "instruments": "instrument_token,tradingsymbol\n123,RELIANCE\n",
+  "history": {"status": "success", "data": {"candles": [
+    ["2026-01-05T09:15:00+0530", 2000, 2020, 1980, 2000, 100],
+    ["2026-01-06T09:15:00+0530", 1000, 1010, 990, 1000, 200]
+  ]}}
+}
