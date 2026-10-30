@@ -148,6 +148,11 @@ Protect local files: any agent with shell access can change local policy and sta
 
 ## Development
 
+The minimal public waitlist page lives in [`website/`](website/README.md). It includes email
+capture and a searchable, regional broker multi-select, backed by a separate Cloudflare Worker
+and D1 database. Broker selections measure interest; they do not expand implemented integrations
+or authorize broker execution. See its README for local development, checks and deployment.
+
 ```bash
 uv sync --locked
 uv run ruff check .

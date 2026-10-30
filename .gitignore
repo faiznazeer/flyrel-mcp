@@ -13,3 +13,9 @@ build/
 *.egg-info/
 .coverage
 htmlcov/
+node_modules/
+.wrangler/
+.dev.vars
+.dev.vars.*
+playwright-report/
+test-results/
