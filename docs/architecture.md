@@ -61,3 +61,25 @@ inputs are not an exhaustive audit trail. External adapters are closed when the 
 Policy limits are sandbox controls, not a compliance engine. A real live execution design needs
 independent approval authentication, exchange-aware instrument identity, account routing, broker
 reconciliation, risk checks, order state transitions, rate limits and credential lifecycle support.
+
+## Proposed independent execution boundary — not implemented
+
+The [product direction](product-direction.md) calls for a separately protected service between
+an agent and broker actions, with no customer segment selected. The initial authorization design
+uses per-order human approval; deployment and any alternative organizational authorization model
+need separate discovery/design while preserving authority outside the agent. The agent would
+submit typed intents without access to broker credentials, signing keys or policy administration.
+Human authorization would come through an
+independently authenticated channel and bind exact account/environment/instrument/order content,
+expiry and policy version. Model-generated claims of consent would not authorize submission.
+
+Future enforcement would recheck permissions and broker state, persist intent and reconcile
+broker results. Unknown outcomes would pause the affected submission scope until resolved;
+local idempotency alone would not imply exactly-once broker execution. Opaque MCP tool forwarding
+would not bypass typed broker mapping or authorization. All supported mutation routes would need
+explicit controls, including modifications, cancellations and halt/resume behavior.
+
+This requires an actual isolation/deployment boundary: a process that can read `.env` or edit
+local policy/state can bypass today's controls. Current adapters remain GET-only. The target
+design is neither an implemented guarantee nor authorization to add broker order methods.
+Broker-paper and live execution each require their own separately authorized milestone.

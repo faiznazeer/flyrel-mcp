@@ -1,5 +1,14 @@
 # Validate cross-broker portfolio review
 
+This is a supporting read-data/usability track. The primary experiment is now the
+[independent permissions and approval layer](product-direction.md); the
+[community research guide](community-research.md) investigates actual adoption barriers before
+introducing that concept. A successful portfolio review does not establish demand for agent
+execution or authorize external writes. Initial product discovery can include a single-account
+investor or an organizational builder/operator; no customer segment has been selected. The
+multi-broker criteria below apply to this particular portfolio comparison. Owner or Reddit
+feedback does not establish demand from brokers, agent-building companies or quant firms.
+
 Selected first workflow: review equity holdings across Kite and Alpaca. Alpaca paper-account and
 Kite Personal account API checks passed on October 29, 2026. The owner reported that available
 Kite holding values matched the UI. A first owner walkthrough identified current holding/daily
@@ -14,8 +23,8 @@ Can someone with both accounts review what they hold, where they hold it, and wh
 unpriced or unreconciled more quickly and reliably than by switching between broker interfaces?
 The present product can show separate broker records and per-account holding value/P&L summaries.
 It cannot yet produce a complete combined exposure figure, concentration percentage or NAV.
-Treat demand for those outputs as input to the
-remaining reconciliation milestone.
+Treat demand for those outputs as input to remaining reconciliation work, prioritized against
+the selected product experiment rather than assumed to be the next release.
 
 ## Offline walkthrough
 

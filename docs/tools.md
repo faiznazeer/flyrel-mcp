@@ -47,6 +47,12 @@ The [holdings performance guide](holdings-performance.md) defines each field and
 Kite daily price change is not daily monetary P&L; its populated `day_unrealized_pnl` metric is
 unknown. Alpaca daily unrealized P&L is broker-reported. Neither is historical account return.
 
-Planned rather than stubbed: live broker-master instrument discovery, backtest strategy registry, `run_backtest`,
-`compare_backtests`, independently approved broker-paper execution, live order routing,
-and market-specific compliance services. Unsupported features do not appear as working tools.
+The [product direction](product-direction.md) prioritizes independently enforced permissions and
+authenticated approval as a future design. Credential isolation, agent-resistant policy controls,
+broker reconciliation and external execution are not implemented by this inventory. Agreement on
+that direction does not authorize broker order methods; broker-paper and live execution each
+require a separate milestone.
+
+Historical portfolio returns, broker-master discovery and strategy backtesting remain future
+work, prioritized by workflow evidence. No `run_backtest`, `compare_backtests`, external trading
+or compliance-enforcement tool is registered. Unsupported features do not appear as working tools.
