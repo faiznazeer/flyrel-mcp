@@ -53,22 +53,20 @@ headers and the privacy page. Test screenshots and runtime data are ignored. CI 
 
 ## Deploy to Cloudflare
 
-Deploy from the reviewed feature branch / merged PR. No production deployment, database or
-domain is provisioned by committing this code. The checked-in database UUID is an explicit
-placeholder; replace it before production deployment.
+Deploy from a merged PR. Committing this code provisions nothing: a deployment needs a
+Cloudflare login with access to the account that owns the `flyrel-waitlist` database.
+
+`wrangler.jsonc` already holds that database's ID on the `WAITLIST_DB` binding. A database ID is a
+resource identifier, not a credential. To use a different database, run
+`npx wrangler d1 create <name>` and put the new ID on `WAITLIST_DB`. If Wrangler offers to add a
+binding for you, decline: the Worker only reads `WAITLIST_DB`. Keep authentication tokens out of
+the checkout and Git. For automation use Cloudflare's authenticated environment; do not put tokens
+in shell arguments or configuration.
 
 ```bash
 cd website
 npm ci
 npx wrangler login
-npx wrangler d1 create flyrel-waitlist
-```
-
-Copy the returned `database_id` into `wrangler.jsonc`. A database ID is a resource identifier,
-not a credential. Keep authentication tokens out of the checkout and Git. For automation use
-Cloudflare's authenticated environment; do not put tokens in shell arguments or configuration.
-
-```bash
 npm run db:remote
 npm run check
 npm run deploy

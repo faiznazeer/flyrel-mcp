@@ -12,8 +12,7 @@
     {
       "binding": "WAITLIST_DB",
       "database_name": "flyrel-waitlist",
-      // Replace with the ID returned by `npx wrangler d1 create flyrel-waitlist`.
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "51d4c5cd-2c68-4198-8612-e5dd0f6ef861",
       "migrations_dir": "migrations"
     }
   ],
