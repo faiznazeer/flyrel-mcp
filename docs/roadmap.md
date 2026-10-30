@@ -1,9 +1,10 @@
 # Roadmap
 
-Direction agreed October 29, 2026: try an independent permissions and approval layer for
-individual investors/traders using general-purpose AI assistants. Expand next to individual
-multi-account traders, then agent developers. See the [product decision](product-direction.md)
-for the hypothesis, target boundary and decision criteria.
+Product focus agreed October 29, 2026 and customer assumptions revised October 30, 2026:
+try an independent security, permissions and approval layer for agentic trading. The customer
+segment is undecided, with no expansion order. Companies building trading agents, brokers,
+quant firms with relevant needs, developers and individual/multi-account traders are discovery
+candidates. See the [product decision](product-direction.md) for the hypothesis and target boundary.
 
 This is an experiment, not a validated business or a promise of secure/loss-free trading.
 Agreement on this direction does not authorize external execution implementation. All external
@@ -27,31 +28,37 @@ access. Local proposal/confirmation tools do not establish independent human app
 ## Next priorities and gates
 
 1. **Discover actual tasks and adoption barriers.** Use the [research drafts](community-research.md)
-   and neutral interviews with current, former and non-users. Look for recurring concrete tasks,
-   workarounds and decisions; distinguish spontaneous concerns from prompted concept feedback.
+   and neutral interviews with current, former and non-users, including organizational builders
+   and operators where possible. Separate user, integration owner, approver and budget holder.
+   Look for recurring concrete tasks, workarounds and decisions; distinguish spontaneous concerns
+   from prompted concept feedback.
    Investigate usefulness, setup, data quality, cost and trust in an intermediary alongside safety.
+   Reddit feedback is exploratory; it does not establish company demand or procurement intent.
    No Reddit outreach, measured adoption or multi-user pilot is completed yet.
-2. **Specify and rehearse the independent boundary without broker writes.** Define protected
+2. **Select an initial pilot segment using evidence.** Compare problem severity, existing
+   workarounds, enforcement feasibility, integration costs, decision authority and willingness to
+   run a bounded pilot. There is no prescribed retail-to-team-to-developer sequence. Multi-account
+   controls, developer interfaces, organizational governance and hosted operation follow actual
+   requirements rather than an assumed buyer. A small single-account prototype is a technical
+   scope choice, not a retail-market commitment. Portable synthetic boundary tests can proceed
+   while customer discovery remains open.
+3. **Specify and rehearse the independent boundary without broker writes.** Define protected
    credential/policy administration, typed order intents, independently authenticated exact-order
    approval, permissions, expiry, rechecks and a durable execution/reconciliation state machine.
    Exercise bypass attempts, tampering, retries, concurrency and unknown broker outcomes using
    synthetic inputs. Record what each test establishes and its assumptions. These are design
    and test milestones; existing local sandbox controls do not implement this boundary.
-3. **Consider a separately authorized broker-paper execution milestone.** Start with one broker,
+4. **Consider a separately authorized broker-paper execution milestone.** Start with one broker,
    cash equities, limit orders and explicit per-order approval. Implement only after authorization
    and prerequisites. Validate fills, partial fills, cancellations, restarts, timeout ambiguity,
    risk accounting and authenticated approval without claiming exactly-once external execution.
-4. **Validate repeated use and control comprehension.** Compare a participant's existing workflow
+5. **Validate repeated use and control comprehension.** Compare a participant's existing workflow
    with a consented bounded prototype. Measure completion, time, friction, understanding and
    voluntary repeat use. Test whether Flyrel changes their actual choice, including whether they
    would prefer manual execution or broker-native controls. A positive interview is not demand.
-5. **Evaluate live execution separately.** Refresh each applicable market/broker/segment's
+6. **Evaluate live execution separately.** Refresh each applicable market/broker/segment's
    operational and legal requirements and review the security/recovery evidence before any live
    execution work. There is no enable-live switch or automatic promotion from broker-paper.
-6. **Expand using evidence.** Add multi-account control scope after a single-account workflow is
-   useful. Expose developer integration interfaces when requested by real users. Organizational
-   multi-user teams, authority over other people's accounts and hosted operation are separate
-   discovery/design decisions, not implied by having multiple local connections.
 
 ## Supporting portfolio and broker validation
 

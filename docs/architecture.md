@@ -65,8 +65,11 @@ reconciliation, risk checks, order state transitions, rate limits and credential
 ## Proposed independent execution boundary — not implemented
 
 The [product direction](product-direction.md) calls for a separately protected service between
-an agent and broker actions. The agent would submit typed intents without access to broker
-credentials, signing keys or policy administration. Human authorization would come through an
+an agent and broker actions, with no customer segment selected. The initial authorization design
+uses per-order human approval; deployment and any alternative organizational authorization model
+need separate discovery/design while preserving authority outside the agent. The agent would
+submit typed intents without access to broker credentials, signing keys or policy administration.
+Human authorization would come through an
 independently authenticated channel and bind exact account/environment/instrument/order content,
 expiry and policy version. Model-generated claims of consent would not authorize submission.
 

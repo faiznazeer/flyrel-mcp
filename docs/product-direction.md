@@ -1,24 +1,31 @@
 # Product direction: independent permissions for investing agents
 
-Decision: try this product hypothesis, agreed October 29, 2026. This is a direction for research
-and development, not a claim of validated demand or authorization to implement broker execution.
+Product hypothesis agreed October 29, 2026; audience assumptions revised October 30, 2026.
+Security, guardrails and independent enforcement remain the product focus. The customer base is
+undecided. This is a direction for research and development, not a claim of validated demand or
+authorization to implement broker execution.
 External adapters remain read-only until a separately, explicitly authorized execution milestone.
 
-## Intended customer and promise
+## Customer discovery and product promise
 
-Serve these audiences in order:
+No customer segment or expansion order is selected. Candidate discovery audiences, without ranking:
 
-1. Individual investors/traders using general-purpose assistants in supported MCP clients.
-2. The same kind of user managing multiple accounts or brokers.
-3. Developers building investing agents who want to reuse the integration and enforcement service.
+- Companies building products or internal systems that use trading agents.
+- Brokers exploring agent-facing capabilities or controls for their existing integrations.
+- Quant firms, if agentic workflows create a relevant need; do not assume current adoption.
+- Individual investors/traders, including people operating multiple accounts.
+- Developers who could integrate the service, whether as users, buyers or distribution partners.
 
-A single trader with several accounts is an extension of the first customer. An organization
-operating accounts for multiple people is a different expansion: roles, organizational boundaries,
-account authority, operations and market/broker requirements need separate discovery.
+These are possible users and buyers, not established demand or an exclusive company-sales pivot.
+For organizational discovery, distinguish the agent developer/operator, trading or risk owner,
+security/integration approver, and budget holder. A developer using an API is not necessarily its
+buyer. Account authority, organizational boundaries and broker/market requirements need their own
+discovery when relevant. There is no commitment to a retail-first interface or a hosted product.
 
-The intended promise is: **give an AI assistant explicitly limited trading permissions, with
-independent approval and verifiable enforcement.** The user can keep their preferred assistant;
-Flyrel supplies portfolio context and, eventually, a controlled path to broker actions.
+The intended promise is: **give trading agents explicitly limited permissions, with independent
+authorization and verifiable enforcement.** This could serve a general-purpose assistant or a
+custom agent system. Flyrel supplies context and, eventually, a controlled path to broker actions;
+interface and deployment choices should follow evidence from the selected workflow.
 
 The agent proposes; a separately protected service decides whether a request is permitted. The
 model's confidence or assertion that the user approved must never substitute for authorization.
@@ -28,19 +35,23 @@ not prerequisites for testing this central hypothesis.
 
 ## What remains a hypothesis
 
-- Some people want to delegate investing tasks to general-purpose agents but stop because they
-  cannot adequately constrain or verify actions. Fear is a possible barrier, not an established
+- Some individuals or organizations may want to delegate trading tasks to agents but lack
+  adequate controls or verification. Security is a possible unmet need, not an established
   explanation of non-adoption. There is no measured "99% reliability" figure for this product.
 - A separate enforcement/approval service could change actual willingness to use those workflows.
   People may instead prefer manual execution, an existing broker tool, or no AI involvement.
-- General-purpose assistants may be the preferred interface. Their future adoption is uncertain.
+- General-purpose assistants or custom systems may be useful interfaces. Their future adoption,
+  especially within brokers or quant firms, is uncertain.
 - The benefit could outweigh additional setup, approvals, latency and trust in another service.
   This additional trust burden must be investigated rather than assumed away.
-- Later multi-account and developer customers may reuse the same core. Their demand is untested.
+- Individuals and companies may need different deployment, approval, integration and operating
+  models. Which segment has an urgent recurring problem and a viable buyer remains untested.
 
 Use the [community research guide](community-research.md) to investigate all barriers without
 presenting a safety solution first. Keep counterexamples and reasons to continue using existing
-workflows. Reddit responses are qualitative, self-selected evidence, not market adoption rates.
+workflows. Reddit responses are qualitative, self-selected evidence, not market adoption rates
+or validation of institutional purchasing demand. Complement them with organizational interviews
+about actual workflows, existing controls, build-versus-buy choices and decision authority.
 
 ## Current implementation and boundary
 
@@ -60,7 +71,9 @@ boundary that actually excludes the agent from broker secrets and administrative
 
 ## Target execution design — not implemented
 
-The following requirements guide a future design; none enables external writes today.
+The following requirements guide an initial future design using per-order human approval;
+none enables external writes today. Other organizational authorization models require separate
+discovery/design and must preserve authority outside the agent.
 
 ### Protected permissions and credentials
 
@@ -104,12 +117,16 @@ loss, and a permitted order is not evidence of a sound investment decision.
 
 Start with order previews and policy/failure tests using synthetic data. A separately authorized
 broker-paper milestone should be narrow: one broker, cash equities, limit orders and explicit
-per-order approval. Live execution remains another separate decision after broker-paper evidence
-and current broker/market review; no enable-live switch is planned.
+per-order approval. That is an initial technical experiment, not a selected customer segment or
+a requirement that every eventual deployment use the same approval model. Live execution remains
+another separate decision after broker-paper evidence and current broker/market review; no
+enable-live switch is planned.
 
 Proposed validation work:
 
 - Interview actual current, former and non-users about recent tasks before showing the concept.
+  Include builders/operators of organizational systems where available; distinguish end-user
+  feedback from evidence supplied by a decision maker with integration or purchasing authority.
 - Rehearse wrong-account, modified-order, expired/replayed approval, concurrent-request,
   credential-access, missing-state, timeout, partial-fill and process-restart cases. Record the
   tested invariants and deployment assumptions; passing tests is not a universal safety proof.
@@ -120,7 +137,10 @@ Proposed validation work:
 Continue if recurring concrete problems map to enforceable controls and participants choose to
 try/use the bounded workflow despite its costs. Revise if other barriers dominate. Reconsider
 if people have no useful delegation task or would avoid an intermediary regardless of controls.
-Qualitative enthusiasm alone does not establish willingness to use or pay.
+Qualitative enthusiasm alone does not establish willingness to use or pay. Select an initial
+segment using recurring problem severity, concrete workarounds, feasible enforcement boundaries,
+integration burden, a reachable decision maker and willingness to run a bounded pilot. Do not
+infer a company's procurement decision from an employee's Reddit comment.
 
 ## Claims and deferred work
 

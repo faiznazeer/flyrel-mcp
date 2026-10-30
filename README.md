@@ -9,14 +9,16 @@ flag exists. No broker credentials are needed to run the demo.
 
 ## Product direction
 
-Flyrel is experimenting with an independent permissions and approval layer for people using
-general-purpose AI assistants to invest or trade. The intended customer order is individual
-investors/traders, individual multi-account traders, then developers building agents.
+Flyrel is experimenting with an independent security, permissions and approval layer for agentic
+investing/trading. The customer segment is undecided. Candidates include companies building
+trading agents, brokers, quant firms if relevant needs emerge, and individual or multi-account
+traders. There is no committed audience order or decision to sell exclusively to companies.
 
 The intended promise is explicitly limited trading permissions with independent approval and
-verifiable enforcement. Broker connectivity and portfolio reports support that workflow. Safety
-and adoption barriers are hypotheses to test, not established explanations of why people do or
-do not use AI. Flyrel does not promise guaranteed profits, loss-free trading or "100% security".
+verifiable enforcement. Broker connectivity and portfolio reports support that workflow. The
+interface, deployment model, buyer and end user remain discovery questions. Reddit research can
+inform user needs; company integration, ownership and purchasing needs require separate evidence.
+Flyrel does not promise guaranteed profits, loss-free trading or "100% security".
 
 The current local setup does not provide that independent boundary: agents with shell access can
 read credentials and change policy/state. Protected credentials, agent-resistant policy controls,

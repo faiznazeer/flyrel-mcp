@@ -5,7 +5,9 @@ This is a supporting read-data/usability track. The primary experiment is now th
 [community research guide](community-research.md) investigates actual adoption barriers before
 introducing that concept. A successful portfolio review does not establish demand for agent
 execution or authorize external writes. Initial product discovery can include a single-account
-investor; the multi-broker criteria below apply to this particular portfolio comparison.
+investor or an organizational builder/operator; no customer segment has been selected. The
+multi-broker criteria below apply to this particular portfolio comparison. Owner or Reddit
+feedback does not establish demand from brokers, agent-building companies or quant firms.
 
 Selected first workflow: review equity holdings across Kite and Alpaca. Alpaca paper-account and
 Kite Personal account API checks passed on October 29, 2026. The owner reported that available
