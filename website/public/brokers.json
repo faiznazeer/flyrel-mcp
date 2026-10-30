@@ -1,0 +1,1206 @@
+[
+  {
+    "id": "etoro",
+    "name": "eToro",
+    "region": "Global",
+    "markets": "Worldwide",
+    "url": "https://www.etoro.com/"
+  },
+  {
+    "id": "ig",
+    "name": "IG",
+    "region": "Global",
+    "markets": "Worldwide",
+    "url": "https://www.ig.com/"
+  },
+  {
+    "id": "interactive-brokers",
+    "name": "Interactive Brokers",
+    "region": "Global",
+    "markets": "Worldwide",
+    "url": "https://www.interactivebrokers.com/"
+  },
+  {
+    "id": "moomoo",
+    "name": "moomoo",
+    "region": "Global",
+    "markets": "United States, Singapore, Malaysia, Japan, Australia, Canada",
+    "url": "https://www.moomoo.com/"
+  },
+  {
+    "id": "renta-4",
+    "name": "Renta 4",
+    "region": "Global",
+    "markets": "Spain, Latin America",
+    "url": "https://www.r4.com/"
+  },
+  {
+    "id": "saxo",
+    "name": "Saxo",
+    "region": "Global",
+    "markets": "Worldwide",
+    "url": "https://www.home.saxo/"
+  },
+  {
+    "id": "webull",
+    "name": "Webull",
+    "region": "Global",
+    "markets": "United States, Asia, Australia",
+    "url": "https://www.webull.com/"
+  },
+  {
+    "id": "xtb",
+    "name": "XTB",
+    "region": "Global",
+    "markets": "Europe, Latin America, Middle East",
+    "url": "https://www.xtb.com/"
+  },
+  {
+    "id": "actinver",
+    "name": "Actinver",
+    "region": "North America",
+    "markets": "Mexico",
+    "url": "https://www.actinver.com/"
+  },
+  {
+    "id": "ally-invest",
+    "name": "Ally Invest",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://www.ally.com/invest/"
+  },
+  {
+    "id": "alpaca",
+    "name": "Alpaca",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://alpaca.markets/"
+  },
+  {
+    "id": "bmo-investorline",
+    "name": "BMO InvestorLine",
+    "region": "North America",
+    "markets": "Canada",
+    "url": "https://www.bmoinvestorline.com/"
+  },
+  {
+    "id": "bursanet",
+    "name": "Bursanet",
+    "region": "North America",
+    "markets": "Mexico",
+    "url": "https://www.bursanet.mx/"
+  },
+  {
+    "id": "charles-schwab",
+    "name": "Charles Schwab",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://www.schwab.com/"
+  },
+  {
+    "id": "cibc-investors-edge",
+    "name": "CIBC Investor's Edge",
+    "region": "North America",
+    "markets": "Canada",
+    "url": "https://www.investorsedge.cibc.com/"
+  },
+  {
+    "id": "etrade",
+    "name": "E*TRADE",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://us.etrade.com/"
+  },
+  {
+    "id": "fidelity",
+    "name": "Fidelity",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://www.fidelity.com/"
+  },
+  {
+    "id": "firstrade",
+    "name": "Firstrade",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://www.firstrade.com/"
+  },
+  {
+    "id": "gbm",
+    "name": "GBM",
+    "region": "North America",
+    "markets": "Mexico",
+    "url": "https://gbm.com/"
+  },
+  {
+    "id": "jpmorgan-self-directed",
+    "name": "J.P. Morgan Self-Directed",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://www.chase.com/personal/investments/online-investing"
+  },
+  {
+    "id": "kuspit",
+    "name": "Kuspit",
+    "region": "North America",
+    "markets": "Mexico",
+    "url": "https://www.kuspit.com/"
+  },
+  {
+    "id": "merrill-edge",
+    "name": "Merrill Edge",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://www.merrilledge.com/"
+  },
+  {
+    "id": "ninjatrader",
+    "name": "NinjaTrader",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://ninjatrader.com/"
+  },
+  {
+    "id": "public",
+    "name": "Public",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://public.com/"
+  },
+  {
+    "id": "qtrade",
+    "name": "Qtrade",
+    "region": "North America",
+    "markets": "Canada",
+    "url": "https://www.qtrade.ca/"
+  },
+  {
+    "id": "questrade",
+    "name": "Questrade",
+    "region": "North America",
+    "markets": "Canada",
+    "url": "https://www.questrade.com/"
+  },
+  {
+    "id": "rbc-direct-investing",
+    "name": "RBC Direct Investing",
+    "region": "North America",
+    "markets": "Canada",
+    "url": "https://www.rbcdirectinvesting.com/"
+  },
+  {
+    "id": "robinhood",
+    "name": "Robinhood",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://robinhood.com/"
+  },
+  {
+    "id": "scotia-itrade",
+    "name": "Scotia iTRADE",
+    "region": "North America",
+    "markets": "Canada",
+    "url": "https://www.scotiaitrade.com/"
+  },
+  {
+    "id": "sofi-invest",
+    "name": "SoFi Invest",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://www.sofi.com/invest/"
+  },
+  {
+    "id": "tastytrade",
+    "name": "tastytrade",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://tastytrade.com/"
+  },
+  {
+    "id": "td-direct-investing",
+    "name": "TD Direct Investing",
+    "region": "North America",
+    "markets": "Canada",
+    "url": "https://www.td.com/ca/en/investing/direct-investing"
+  },
+  {
+    "id": "tradestation",
+    "name": "TradeStation",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://www.tradestation.com/"
+  },
+  {
+    "id": "vanguard",
+    "name": "Vanguard",
+    "region": "North America",
+    "markets": "United States",
+    "url": "https://investor.vanguard.com/"
+  },
+  {
+    "id": "wealthsimple",
+    "name": "Wealthsimple",
+    "region": "North America",
+    "markets": "Canada",
+    "url": "https://www.wealthsimple.com/"
+  },
+  {
+    "id": "aj-bell",
+    "name": "AJ Bell",
+    "region": "Europe",
+    "markets": "United Kingdom",
+    "url": "https://www.ajbell.co.uk/"
+  },
+  {
+    "id": "avanza",
+    "name": "Avanza",
+    "region": "Europe",
+    "markets": "Sweden",
+    "url": "https://www.avanza.se/"
+  },
+  {
+    "id": "bolero",
+    "name": "Bolero",
+    "region": "Europe",
+    "markets": "Belgium",
+    "url": "https://www.bolero.be/"
+  },
+  {
+    "id": "bourse-direct",
+    "name": "Bourse Direct",
+    "region": "Europe",
+    "markets": "France",
+    "url": "https://www.boursedirect.fr/"
+  },
+  {
+    "id": "boursobank",
+    "name": "BoursoBank",
+    "region": "Europe",
+    "markets": "France",
+    "url": "https://www.boursobank.com/"
+  },
+  {
+    "id": "bossa",
+    "name": "BOŚ Bossa",
+    "region": "Europe",
+    "markets": "Poland",
+    "url": "https://bossa.pl/"
+  },
+  {
+    "id": "bux",
+    "name": "BUX",
+    "region": "Europe",
+    "markets": "Netherlands, EU",
+    "url": "https://bux.com/"
+  },
+  {
+    "id": "comdirect",
+    "name": "comdirect",
+    "region": "Europe",
+    "markets": "Germany",
+    "url": "https://www.comdirect.de/"
+  },
+  {
+    "id": "consorsbank",
+    "name": "Consorsbank",
+    "region": "Europe",
+    "markets": "Germany",
+    "url": "https://www.consorsbank.de/"
+  },
+  {
+    "id": "degiro",
+    "name": "DEGIRO",
+    "region": "Europe",
+    "markets": "Europe",
+    "url": "https://www.degiro.com/"
+  },
+  {
+    "id": "directa",
+    "name": "Directa SIM",
+    "region": "Europe",
+    "markets": "Italy",
+    "url": "https://www.directa.it/"
+  },
+  {
+    "id": "exante",
+    "name": "EXANTE",
+    "region": "Europe",
+    "markets": "Cyprus, EU",
+    "url": "https://exante.eu/"
+  },
+  {
+    "id": "fineco",
+    "name": "Fineco",
+    "region": "Europe",
+    "markets": "Italy",
+    "url": "https://finecobank.com/"
+  },
+  {
+    "id": "flatex",
+    "name": "flatex",
+    "region": "Europe",
+    "markets": "Germany, Austria",
+    "url": "https://www.flatex.de/"
+  },
+  {
+    "id": "fortuneo",
+    "name": "Fortuneo",
+    "region": "Europe",
+    "markets": "France",
+    "url": "https://www.fortuneo.fr/"
+  },
+  {
+    "id": "freetrade",
+    "name": "Freetrade",
+    "region": "Europe",
+    "markets": "United Kingdom",
+    "url": "https://freetrade.io/"
+  },
+  {
+    "id": "hargreaves-lansdown",
+    "name": "Hargreaves Lansdown",
+    "region": "Europe",
+    "markets": "United Kingdom",
+    "url": "https://www.hl.co.uk/"
+  },
+  {
+    "id": "ing-germany",
+    "name": "ING",
+    "region": "Europe",
+    "markets": "Germany",
+    "url": "https://www.ing.de/"
+  },
+  {
+    "id": "interactive-investor",
+    "name": "interactive investor",
+    "region": "Europe",
+    "markets": "United Kingdom",
+    "url": "https://www.ii.co.uk/"
+  },
+  {
+    "id": "keytrade-bank",
+    "name": "Keytrade Bank",
+    "region": "Europe",
+    "markets": "Belgium, Luxembourg",
+    "url": "https://www.keytradebank.be/"
+  },
+  {
+    "id": "lightyear",
+    "name": "Lightyear",
+    "region": "Europe",
+    "markets": "United Kingdom, Europe",
+    "url": "https://lightyear.com/"
+  },
+  {
+    "id": "myinvestor",
+    "name": "MyInvestor",
+    "region": "Europe",
+    "markets": "Spain",
+    "url": "https://myinvestor.es/"
+  },
+  {
+    "id": "nordnet",
+    "name": "Nordnet",
+    "region": "Europe",
+    "markets": "Sweden, Norway, Denmark, Finland",
+    "url": "https://www.nordnet.se/"
+  },
+  {
+    "id": "revolut",
+    "name": "Revolut",
+    "region": "Europe",
+    "markets": "United Kingdom, EU",
+    "url": "https://www.revolut.com/"
+  },
+  {
+    "id": "scalable-capital",
+    "name": "Scalable Capital",
+    "region": "Europe",
+    "markets": "Germany, Europe",
+    "url": "https://de.scalable.capital/"
+  },
+  {
+    "id": "swissquote",
+    "name": "Swissquote",
+    "region": "Europe",
+    "markets": "Switzerland, Europe",
+    "url": "https://www.swissquote.com/"
+  },
+  {
+    "id": "trade-republic",
+    "name": "Trade Republic",
+    "region": "Europe",
+    "markets": "Germany, Europe",
+    "url": "https://traderepublic.com/"
+  },
+  {
+    "id": "trading-212",
+    "name": "Trading 212",
+    "region": "Europe",
+    "markets": "United Kingdom, Europe",
+    "url": "https://www.trading212.com/"
+  },
+  {
+    "id": "5paisa",
+    "name": "5paisa",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://www.5paisa.com/"
+  },
+  {
+    "id": "ajaib",
+    "name": "Ajaib",
+    "region": "Asia",
+    "markets": "Indonesia",
+    "url": "https://ajaib.co.id/"
+  },
+  {
+    "id": "angel-one",
+    "name": "Angel One",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://www.angelone.in/"
+  },
+  {
+    "id": "axis-direct",
+    "name": "Axis Direct",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://simplehai.axisdirect.in/"
+  },
+  {
+    "id": "bibit",
+    "name": "Bibit",
+    "region": "Asia",
+    "markets": "Indonesia",
+    "url": "https://bibit.id/"
+  },
+  {
+    "id": "bpi-trade",
+    "name": "BPI Trade",
+    "region": "Asia",
+    "markets": "Philippines",
+    "url": "https://www.bpitrade.com/"
+  },
+  {
+    "id": "bualuang",
+    "name": "Bualuang Securities",
+    "region": "Asia",
+    "markets": "Thailand",
+    "url": "https://www.bualuang.co.th/"
+  },
+  {
+    "id": "citic-securities",
+    "name": "CITIC Securities",
+    "region": "Asia",
+    "markets": "China",
+    "url": "https://www.cs.ecitic.com/"
+  },
+  {
+    "id": "col-financial",
+    "name": "COL Financial",
+    "region": "Asia",
+    "markets": "Philippines",
+    "url": "https://www.colfinancial.com/"
+  },
+  {
+    "id": "dbs-vickers",
+    "name": "DBS Vickers",
+    "region": "Asia",
+    "markets": "Singapore, Hong Kong",
+    "url": "https://www.dbsvickers.com/"
+  },
+  {
+    "id": "dhan",
+    "name": "Dhan",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://dhan.co/"
+  },
+  {
+    "id": "east-money",
+    "name": "East Money",
+    "region": "Asia",
+    "markets": "China",
+    "url": "https://www.eastmoney.com/"
+  },
+  {
+    "id": "finansia",
+    "name": "Finansia Syrus",
+    "region": "Asia",
+    "markets": "Thailand",
+    "url": "https://www.fnsyrus.com/"
+  },
+  {
+    "id": "fubon-securities",
+    "name": "Fubon Securities",
+    "region": "Asia",
+    "markets": "Taiwan",
+    "url": "https://www.fubon.com/securities/"
+  },
+  {
+    "id": "futu",
+    "name": "Futu",
+    "region": "Asia",
+    "markets": "Hong Kong",
+    "url": "https://www.futuhk.com/"
+  },
+  {
+    "id": "fyers",
+    "name": "FYERS",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://fyers.in/"
+  },
+  {
+    "id": "groww",
+    "name": "Groww",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://groww.in/"
+  },
+  {
+    "id": "hdfc-securities",
+    "name": "HDFC Securities",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://www.hdfcsec.com/"
+  },
+  {
+    "id": "huatai-securities",
+    "name": "Huatai Securities",
+    "region": "Asia",
+    "markets": "China",
+    "url": "https://www.htsc.com.cn/"
+  },
+  {
+    "id": "icici-direct",
+    "name": "ICICI Direct",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://www.icicidirect.com/"
+  },
+  {
+    "id": "indmoney",
+    "name": "INDmoney",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://www.indmoney.com/"
+  },
+  {
+    "id": "ipot",
+    "name": "IPOT",
+    "region": "Asia",
+    "markets": "Indonesia",
+    "url": "https://www.indopremier.com/"
+  },
+  {
+    "id": "kiwoom",
+    "name": "Kiwoom Securities",
+    "region": "Asia",
+    "markets": "South Korea",
+    "url": "https://www.kiwoom.com/"
+  },
+  {
+    "id": "korea-investment",
+    "name": "Korea Investment & Securities",
+    "region": "Asia",
+    "markets": "South Korea",
+    "url": "https://www.truefriend.com/"
+  },
+  {
+    "id": "kotak-securities",
+    "name": "Kotak Securities",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://www.kotakneo.com/"
+  },
+  {
+    "id": "longbridge",
+    "name": "Longbridge",
+    "region": "Asia",
+    "markets": "Hong Kong, Singapore",
+    "url": "https://longbridge.com/"
+  },
+  {
+    "id": "matsui-securities",
+    "name": "Matsui Securities",
+    "region": "Asia",
+    "markets": "Japan",
+    "url": "https://www.matsui.co.jp/"
+  },
+  {
+    "id": "mirae-asset",
+    "name": "Mirae Asset Securities",
+    "region": "Asia",
+    "markets": "South Korea, Asia",
+    "url": "https://securities.miraeasset.com/"
+  },
+  {
+    "id": "mufg-esmart",
+    "name": "Mitsubishi UFJ eSmart",
+    "region": "Asia",
+    "markets": "Japan",
+    "url": "https://kabu.com/"
+  },
+  {
+    "id": "monex",
+    "name": "Monex",
+    "region": "Asia",
+    "markets": "Japan",
+    "url": "https://www.monex.co.jp/"
+  },
+  {
+    "id": "motilal-oswal",
+    "name": "Motilal Oswal",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://www.motilaloswal.com/"
+  },
+  {
+    "id": "nomura",
+    "name": "Nomura Securities",
+    "region": "Asia",
+    "markets": "Japan",
+    "url": "https://www.nomura.co.jp/"
+  },
+  {
+    "id": "ocbc-securities",
+    "name": "OCBC Securities",
+    "region": "Asia",
+    "markets": "Singapore",
+    "url": "https://www.iocbc.com/"
+  },
+  {
+    "id": "paytm-money",
+    "name": "Paytm Money",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://www.paytmmoney.com/"
+  },
+  {
+    "id": "phillip-securities",
+    "name": "Phillip Securities",
+    "region": "Asia",
+    "markets": "Singapore, Asia",
+    "url": "https://www.poems.com.sg/"
+  },
+  {
+    "id": "rakuten-securities",
+    "name": "Rakuten Securities",
+    "region": "Asia",
+    "markets": "Japan",
+    "url": "https://www.rakuten-sec.co.jp/"
+  },
+  {
+    "id": "rakuten-trade",
+    "name": "Rakuten Trade",
+    "region": "Asia",
+    "markets": "Malaysia",
+    "url": "https://www.rakutentrade.my/"
+  },
+  {
+    "id": "samsung-securities",
+    "name": "Samsung Securities",
+    "region": "Asia",
+    "markets": "South Korea",
+    "url": "https://www.samsungpop.com/"
+  },
+  {
+    "id": "sbi-securities",
+    "name": "SBI Securities",
+    "region": "Asia",
+    "markets": "Japan",
+    "url": "https://www.sbisec.co.jp/"
+  },
+  {
+    "id": "sharekhan",
+    "name": "Sharekhan",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://www.sharekhan.com/"
+  },
+  {
+    "id": "ssi-securities",
+    "name": "SSI Securities",
+    "region": "Asia",
+    "markets": "Vietnam",
+    "url": "https://www.ssi.com.vn/"
+  },
+  {
+    "id": "stockbit",
+    "name": "Stockbit",
+    "region": "Asia",
+    "markets": "Indonesia",
+    "url": "https://stockbit.com/"
+  },
+  {
+    "id": "syfe",
+    "name": "Syfe",
+    "region": "Asia",
+    "markets": "Singapore",
+    "url": "https://www.syfe.com/"
+  },
+  {
+    "id": "tcbs",
+    "name": "TCBS",
+    "region": "Asia",
+    "markets": "Vietnam",
+    "url": "https://www.tcbs.com.vn/"
+  },
+  {
+    "id": "tiger-brokers",
+    "name": "Tiger Brokers",
+    "region": "Asia",
+    "markets": "Singapore, Hong Kong, Asia",
+    "url": "https://www.itiger.com/"
+  },
+  {
+    "id": "toss-securities",
+    "name": "Toss Securities",
+    "region": "Asia",
+    "markets": "South Korea",
+    "url": "https://tossinvest.com/"
+  },
+  {
+    "id": "uob-kay-hian",
+    "name": "UOB Kay Hian",
+    "region": "Asia",
+    "markets": "Singapore",
+    "url": "https://www.uobkh.com.sg/"
+  },
+  {
+    "id": "upstox",
+    "name": "Upstox",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://upstox.com/"
+  },
+  {
+    "id": "vps-securities",
+    "name": "VPS Securities",
+    "region": "Asia",
+    "markets": "Vietnam",
+    "url": "https://www.vps.com.vn/"
+  },
+  {
+    "id": "yuanta",
+    "name": "Yuanta Securities",
+    "region": "Asia",
+    "markets": "Taiwan",
+    "url": "https://www.yuanta.com.tw/"
+  },
+  {
+    "id": "zerodha",
+    "name": "Zerodha",
+    "region": "Asia",
+    "markets": "India",
+    "url": "https://zerodha.com/"
+  },
+  {
+    "id": "absa",
+    "name": "Absa Stockbrokers",
+    "region": "Africa",
+    "markets": "South Africa",
+    "url": "https://www.absastockbrokers.co.za/"
+  },
+  {
+    "id": "bamboo",
+    "name": "Bamboo",
+    "region": "Africa",
+    "markets": "Nigeria, Ghana",
+    "url": "https://investbamboo.com/"
+  },
+  {
+    "id": "chaka",
+    "name": "Chaka",
+    "region": "Africa",
+    "markets": "Nigeria",
+    "url": "https://chaka.com/"
+  },
+  {
+    "id": "databank",
+    "name": "Databank",
+    "region": "Africa",
+    "markets": "Ghana",
+    "url": "https://databankgroup.com/"
+  },
+  {
+    "id": "easyequities",
+    "name": "EasyEquities",
+    "region": "Africa",
+    "markets": "South Africa",
+    "url": "https://www.easyequities.co.za/"
+  },
+  {
+    "id": "efg-hermes-one",
+    "name": "EFG Hermes One",
+    "region": "Africa",
+    "markets": "Egypt",
+    "url": "https://app2.efghermesone.com/"
+  },
+  {
+    "id": "fnb",
+    "name": "FNB Share Investing",
+    "region": "Africa",
+    "markets": "South Africa",
+    "url": "https://www.fnb.co.za/share-investing/"
+  },
+  {
+    "id": "hisa",
+    "name": "Hisa",
+    "region": "Africa",
+    "markets": "Kenya",
+    "url": "https://hisa.co/"
+  },
+  {
+    "id": "investec-clarity",
+    "name": "Investec Clarity",
+    "region": "Africa",
+    "markets": "South Africa",
+    "url": "https://www.investec.com/"
+  },
+  {
+    "id": "meristem",
+    "name": "Meristem",
+    "region": "Africa",
+    "markets": "Nigeria",
+    "url": "https://meristemng.com/"
+  },
+  {
+    "id": "risevest",
+    "name": "Rise",
+    "region": "Africa",
+    "markets": "Nigeria",
+    "url": "https://risevest.com/"
+  },
+  {
+    "id": "stanbic-ibtc",
+    "name": "Stanbic IBTC Stockbrokers",
+    "region": "Africa",
+    "markets": "Nigeria",
+    "url": "https://www.stanbicibtcstockbrokers.com/"
+  },
+  {
+    "id": "standard-bank",
+    "name": "Standard Bank Online Share Trading",
+    "region": "Africa",
+    "markets": "South Africa",
+    "url": "https://securities.standardbank.co.za/"
+  },
+  {
+    "id": "thndr",
+    "name": "Thndr",
+    "region": "Africa",
+    "markets": "Egypt",
+    "url": "https://thndr.app/"
+  },
+  {
+    "id": "trove",
+    "name": "Trove",
+    "region": "Africa",
+    "markets": "Nigeria",
+    "url": "https://trovefinance.com/"
+  },
+  {
+    "id": "balanz",
+    "name": "Balanz",
+    "region": "South America",
+    "markets": "Argentina",
+    "url": "https://balanz.com/"
+  },
+  {
+    "id": "btg-pactual",
+    "name": "BTG Pactual",
+    "region": "South America",
+    "markets": "Brazil",
+    "url": "https://investimentos.btgpactual.com/"
+  },
+  {
+    "id": "bull-market",
+    "name": "Bull Market Brokers",
+    "region": "South America",
+    "markets": "Argentina",
+    "url": "https://www.bullmarketbrokers.com/"
+  },
+  {
+    "id": "clear",
+    "name": "Clear",
+    "region": "South America",
+    "markets": "Brazil",
+    "url": "https://corretoraclear.com.br/"
+  },
+  {
+    "id": "cocos-capital",
+    "name": "Cocos Capital",
+    "region": "South America",
+    "markets": "Argentina",
+    "url": "https://cocos.capital/"
+  },
+  {
+    "id": "fintual",
+    "name": "Fintual",
+    "region": "South America",
+    "markets": "Chile, Mexico",
+    "url": "https://fintual.cl/"
+  },
+  {
+    "id": "genial",
+    "name": "Genial Investimentos",
+    "region": "South America",
+    "markets": "Brazil",
+    "url": "https://www.genialinvest.com.br/"
+  },
+  {
+    "id": "hapi",
+    "name": "Hapi",
+    "region": "South America",
+    "markets": "Latin America",
+    "url": "https://hapi.trade/"
+  },
+  {
+    "id": "inter-invest",
+    "name": "Inter Invest",
+    "region": "South America",
+    "markets": "Brazil",
+    "url": "https://inter.co/"
+  },
+  {
+    "id": "iol",
+    "name": "IOL Invertironline",
+    "region": "South America",
+    "markets": "Argentina",
+    "url": "https://www.invertironline.com/"
+  },
+  {
+    "id": "itau-corretora",
+    "name": "Itaú Corretora",
+    "region": "South America",
+    "markets": "Brazil",
+    "url": "https://www.itau.com.br/investimentos/"
+  },
+  {
+    "id": "nu-invest",
+    "name": "Nu Invest",
+    "region": "South America",
+    "markets": "Brazil",
+    "url": "https://www.nuinvest.com.br/"
+  },
+  {
+    "id": "ppi",
+    "name": "PPI",
+    "region": "South America",
+    "markets": "Argentina",
+    "url": "https://www.portfoliopersonal.com/"
+  },
+  {
+    "id": "racional",
+    "name": "Racional",
+    "region": "South America",
+    "markets": "Chile",
+    "url": "https://www.racional.cl/"
+  },
+  {
+    "id": "rico",
+    "name": "Rico",
+    "region": "South America",
+    "markets": "Brazil",
+    "url": "https://www.rico.com.vc/"
+  },
+  {
+    "id": "toro",
+    "name": "Toro Investimentos",
+    "region": "South America",
+    "markets": "Brazil",
+    "url": "https://www.toroinvestimentos.com.br/"
+  },
+  {
+    "id": "trii",
+    "name": "trii",
+    "region": "South America",
+    "markets": "Colombia, Peru, Chile",
+    "url": "https://trii.co/"
+  },
+  {
+    "id": "xp",
+    "name": "XP Investimentos",
+    "region": "South America",
+    "markets": "Brazil",
+    "url": "https://www.xpi.com.br/"
+  },
+  {
+    "id": "asb-securities",
+    "name": "ASB Securities",
+    "region": "Oceania",
+    "markets": "New Zealand",
+    "url": "https://www.asb.co.nz/asb-securities"
+  },
+  {
+    "id": "cmc-invest",
+    "name": "CMC Invest",
+    "region": "Oceania",
+    "markets": "Australia",
+    "url": "https://www.cmcmarkets.com/en-au/stockbroking"
+  },
+  {
+    "id": "commsec",
+    "name": "CommSec",
+    "region": "Oceania",
+    "markets": "Australia",
+    "url": "https://www.commsec.com.au/"
+  },
+  {
+    "id": "hatch",
+    "name": "Hatch",
+    "region": "Oceania",
+    "markets": "New Zealand",
+    "url": "https://www.hatchinvest.nz/"
+  },
+  {
+    "id": "invest-direct",
+    "name": "Invest Direct",
+    "region": "Oceania",
+    "markets": "New Zealand",
+    "url": "https://www.investdirect.nz/"
+  },
+  {
+    "id": "investnow",
+    "name": "InvestNow",
+    "region": "Oceania",
+    "markets": "New Zealand",
+    "url": "https://investnow.co.nz/"
+  },
+  {
+    "id": "nabtrade",
+    "name": "nabtrade",
+    "region": "Oceania",
+    "markets": "Australia",
+    "url": "https://www.nabtrade.com.au/"
+  },
+  {
+    "id": "pearler",
+    "name": "Pearler",
+    "region": "Oceania",
+    "markets": "Australia",
+    "url": "https://pearler.com/"
+  },
+  {
+    "id": "selfwealth",
+    "name": "Selfwealth",
+    "region": "Oceania",
+    "markets": "Australia",
+    "url": "https://www.selfwealth.com.au/"
+  },
+  {
+    "id": "sharesies",
+    "name": "Sharesies",
+    "region": "Oceania",
+    "markets": "New Zealand, Australia",
+    "url": "https://www.sharesies.nz/"
+  },
+  {
+    "id": "stake",
+    "name": "Stake",
+    "region": "Oceania",
+    "markets": "Australia, New Zealand",
+    "url": "https://hellostake.com/"
+  },
+  {
+    "id": "superhero",
+    "name": "Superhero",
+    "region": "Oceania",
+    "markets": "Australia",
+    "url": "https://www.superhero.com.au/"
+  },
+  {
+    "id": "adcb-securities",
+    "name": "ADCB Securities",
+    "region": "Middle East",
+    "markets": "United Arab Emirates",
+    "url": "https://www.adcbsecurities.com/"
+  },
+  {
+    "id": "al-rajhi-capital",
+    "name": "Al Rajhi Capital",
+    "region": "Middle East",
+    "markets": "Saudi Arabia",
+    "url": "https://www.alrajhi-capital.com/"
+  },
+  {
+    "id": "alinma-capital",
+    "name": "Alinma Capital",
+    "region": "Middle East",
+    "markets": "Saudi Arabia",
+    "url": "https://www.alinmacapital.com/"
+  },
+  {
+    "id": "baraka",
+    "name": "baraka",
+    "region": "Middle East",
+    "markets": "United Arab Emirates, Middle East",
+    "url": "https://getbaraka.com/"
+  },
+  {
+    "id": "derayah",
+    "name": "Derayah",
+    "region": "Middle East",
+    "markets": "Saudi Arabia",
+    "url": "https://web.derayah.com/"
+  },
+  {
+    "id": "emirates-nbd-securities",
+    "name": "Emirates NBD Securities",
+    "region": "Middle East",
+    "markets": "United Arab Emirates",
+    "url": "https://www.emiratesnbd.com/"
+  },
+  {
+    "id": "excellence",
+    "name": "Excellence",
+    "region": "Middle East",
+    "markets": "Israel",
+    "url": "https://www.xnes.co.il/"
+  },
+  {
+    "id": "midas",
+    "name": "Midas",
+    "region": "Middle East",
+    "markets": "Turkey",
+    "url": "https://www.getmidas.com/"
+  },
+  {
+    "id": "mubasher",
+    "name": "Mubasher",
+    "region": "Middle East",
+    "markets": "Middle East, North Africa",
+    "url": "https://www.mubashertrade.com/"
+  },
+  {
+    "id": "qnb-financial-services",
+    "name": "QNB Financial Services",
+    "region": "Middle East",
+    "markets": "Qatar",
+    "url": "https://www.qnbfs.com/"
+  },
+  {
+    "id": "riyad-capital",
+    "name": "Riyad Capital",
+    "region": "Middle East",
+    "markets": "Saudi Arabia",
+    "url": "https://www.riyadcapital.com/"
+  },
+  {
+    "id": "sarwa",
+    "name": "Sarwa",
+    "region": "Middle East",
+    "markets": "United Arab Emirates, Middle East",
+    "url": "https://www.sarwa.co/"
+  },
+  {
+    "id": "snb-capital",
+    "name": "SNB Capital",
+    "region": "Middle East",
+    "markets": "Saudi Arabia",
+    "url": "https://snbcapital.com/"
+  }
+]
