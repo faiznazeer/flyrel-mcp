@@ -3,28 +3,42 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#08070a">
+    <meta name="color-scheme" content="dark">
     <title>Waitlist privacy — Flyrel</title>
     <meta name="description" content="How Flyrel handles waitlist email addresses and broker preferences.">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/styles.css">
   </head>
-  <body>
-    <div class="page">
-      <header class="site-header"><a class="wordmark" href="/">flyrel<span class="wordmark-dot">.</span></a><span class="header-note">Independent by design.</span></header>
-      <main class="privacy-content">
-        <a class="back-link" href="/">← Back to the waitlist</a>
-        <h1>A little clarity<br>on your data.</h1>
-        <p>Last updated October 30, 2026.</p>
-        <h2>What you share</h2>
-        <p>Joining the waitlist saves your email address, selected brokers, any broker name you add, the time you signed up, and a record of your agreement to early-access emails. We use these details to manage the waitlist, understand which integrations people want, and contact you about Flyrel early access.</p>
-        <h2>What stays yours</h2>
-        <p>This form does not connect to your broker. It asks for no passwords, API keys, account numbers, balances, or holdings. A broker’s presence in the selector does not mean an integration is available or endorsed.</p>
-        <h2>Where it goes</h2>
-        <p>The site is hosted on Cloudflare, and waitlist entries are stored in Cloudflare D1. Cloudflare processes network information, including IP addresses, to serve and protect the site. The signup handler uses your IP address for short-lived rate limiting; it does not save it in the waitlist database. This page uses no advertising trackers, analytics scripts, or browser storage.</p>
-        <h2>Early-access emails</h2>
-        <p>Your details stay on the waitlist until removed. You can reply to any early-access email to ask us to stop contacting you or delete your entry. You can also <a href="https://github.com/faiznazeer/flyrel-mcp/issues/new?title=Private%20waitlist%20data%20request">request a private contact channel</a> through our project. Please do not post your email address or other personal details in a public issue.</p>
-      </main>
-      <footer class="site-footer"><span>© 2026 Flyrel</span><span>In development. External broker access is read-only.</span><a href="/">Back to Flyrel</a></footer>
-    </div>
+  <body class="doc-page">
+    <header class="nav">
+      <a class="brand" href="/" aria-label="Flyrel home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.2 5H30l-2.6 6.4H6.6zM5.6 14.2h16.2l-2.6 6.4H3zM2 23.4h8.6L8 29.8H-.6z" transform="translate(1.2)"/></svg>
+        <span>Flyrel</span>
+      </a>
+    </header>
+    <main class="doc">
+      <a class="doc-back" href="/">← Back to the waitlist</a>
+      <h1>A little clarity on your data.</h1>
+      <p class="doc-date">Last updated October 30, 2026</p>
+      <h2>What you share</h2>
+      <p>Joining the waitlist saves your email address, selected brokers, any broker name you add, the time you signed up, and a record of your agreement to early-access emails. We use these details to manage the waitlist, understand which integrations people want, and contact you about Flyrel early access.</p>
+      <h2>What stays yours</h2>
+      <p>This form does not connect to your broker. It asks for no passwords, API keys, account numbers, balances, or holdings. A broker’s presence in the selector does not mean an integration is available or endorsed.</p>
+      <h2>Where it goes</h2>
+      <p>The site is hosted on Cloudflare, and waitlist entries are stored in Cloudflare D1. Cloudflare processes network information, including IP addresses, to serve and protect the site. The signup handler uses your IP address for short-lived rate limiting; it does not save it in the waitlist database. This page uses no advertising trackers, analytics scripts, or browser storage.</p>
+      <h2>Early-access emails</h2>
+      <p>Your details stay on the waitlist until removed. You can reply to any early-access email to ask us to stop contacting you or delete your entry. You can also <a href="https://github.com/faiznazeer/flyrel-mcp/issues/new?title=Private%20waitlist%20data%20request">request a private contact channel</a> through our project. Please do not post your email address or other personal details in a public issue.</p>
+    </main>
+    <footer class="footer">
+      <div class="footer-top">
+        <p>Flyrel is in development. External broker access is read-only and nothing here places orders.</p>
+        <nav aria-label="Footer">
+          <a href="/">Home</a>
+          <a href="https://github.com/faiznazeer/flyrel-mcp">GitHub</a>
+          <span>© 2026 Flyrel</span>
+        </nav>
+      </div>
+    </footer>
   </body>
 </html>

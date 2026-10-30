@@ -1,14 +1,28 @@
 # Flyrel waitlist website
 
-A deliberately small landing page: one product introduction and a waitlist form with email,
-multi-select brokers, an optional unlisted broker, and explicit early-access email consent.
-The 79-entry broker catalog covers all major world regions. It measures interest, not supported
-integrations, broker recommendations, customer eligibility, or a promise of future availability.
-`markets` values are search hints, not a list of jurisdictions where a visitor can open an account.
+A deliberately small landing page: a hero with a one-line waitlist capsule (email, multi-select
+brokers, explicit early-access consent), a concept preview of what Flyrel intends to decide, and
+the broker list. The 172-entry catalog covers all major world regions. It measures interest, not
+supported integrations, broker recommendations, customer eligibility, or a promise of future
+availability. `markets` values are search hints, not a list of jurisdictions where a visitor can
+open an account.
 
 This is a separate Cloudflare Worker with static assets and a D1 database. It imports no MCP
 code, loads no broker credentials, and cannot place or modify orders. It needs no frontend
 framework or build step. Signup data is never stored in browser storage.
+
+The console on the page is a looping illustration, not product output. Its orders, amounts and
+rules are synthetic and it is labelled as a concept. Keep that label, and keep copy about limits
+and approvals in the future tense of "what we're building" until enforcement actually exists.
+
+## Assets
+
+- `public/fonts/`: self-hosted Mona Sans, Geist and Geist Mono (SIL OFL, licenses alongside). The
+  CSP allows only same-origin fonts.
+- `public/globe.js`: draws the hero globe on a canvas. It pauses off-screen and renders one static
+  frame under `prefers-reduced-motion`. Arcs and hubs are decorative, not order flow.
+- `public/globe-mask.js`: generated land/sea bits from Natural Earth (public domain). Regenerate
+  with the command at the top of `scripts/generate-globe-mask.mjs`.
 
 ## Local development
 
@@ -34,8 +48,8 @@ npm run test:browser
 `npm test` executes the actual migration and handler queries against SQLite, including duplicate
 signups, broker ID validation, consent, request bounds, SQL parameterization, rate limiting and
 storage failures. Browser tests start a real local Worker/D1, submit a signup, and check mobile
-selection, keyboard dismissal, failure recovery, security headers and the privacy page. Test
-screenshots and runtime data are ignored. CI runs these alongside the existing Python checks.
+selection, keyboard dismissal, the 20-broker cap, failure recovery, reduced motion, security
+headers and the privacy page. Test screenshots and runtime data are ignored. CI runs these alongside the existing Python checks.
 
 ## Deploy to Cloudflare
 
@@ -107,8 +121,12 @@ and official-site references. The browser and Worker share this exact catalog; t
 mapping from waitlist IDs to trading adapters. Preserve stored IDs when changing display names.
 Retired catalog IDs remain in existing records; don't repurpose them for another firm.
 
-Broker websites are recorded per entry. Representative regional references checked October 30,
-2026: [EasyEquities](https://www.easyequities.co.za/),
+Broker websites are recorded per entry. Each of the 93 entries added for the redesign was requested
+on October 30, 2026, and rebrands or dead links found that way were corrected or removed. That
+check shows a site responds (some answer automated requests with 403, and BMO's redirect target
+could not be reached from the check machine); it does not confirm current services. The original
+79 entries' representative references from the same date:
+[EasyEquities](https://www.easyequities.co.za/),
 [Bamboo's availability notice](https://faq.investbamboo.com/en/articles/6884650-what-countries-is-bamboo-available-in),
 [Hapi](https://hapi.trade/en), [trii](https://www.trii.co/blog/como-instalar-trii-y-tener-la-cuenta-lista-para-invertir-179),
 [Stake](https://hellostake.com/), [Tiger Brokers](https://www.itiger.com/sg/), and

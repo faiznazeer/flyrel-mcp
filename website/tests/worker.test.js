@@ -6,6 +6,7 @@ import worker from "../src/worker.js";
 
 const catalog = JSON.parse(readFileSync(new URL("../public/brokers.json", import.meta.url)));
 const migration = readFileSync(new URL("../migrations/0001_waitlist.sql", import.meta.url), "utf8");
+const landingPage = readFileSync(new URL("../public/index.html", import.meta.url), "utf8");
 const databases = [];
 afterEach(() => { for (const db of databases.splice(0)) db.close(); });
 
@@ -159,6 +160,10 @@ test("missing bindings and storage failures never report a saved signup or leak 
   assert.ok(!(await response.text()).includes("private database details"));
   env.ASSETS.fetch = async () => new Response("Not found", { status: 404 });
   assert.equal((await worker.fetch(request(), env)).status, 503);
+});
+
+test("the landing page's pre-rendered broker count matches the catalog", () => {
+  assert.ok(landingPage.includes(`<span id="broker-count">${catalog.length}</span>`));
 });
 
 test("catalog IDs are unique and cover each requested world region without integration claims", () => {

@@ -3,81 +3,205 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f8f9f5">
-    <title>Flyrel — Your agents. Your rules.</title>
-    <meta name="description" content="We’re building the permissions layer for investing agents. Join the Flyrel waitlist and tell us which brokers you use.">
-    <meta property="og:title" content="Flyrel — Your agents. Your rules.">
-    <meta property="og:description" content="The permissions layer for investing agents. Join the waitlist.">
+    <meta name="theme-color" content="#08070a">
+    <meta name="color-scheme" content="dark">
+    <title>Flyrel — Let agents trade. Keep the final say.</title>
+    <meta name="description" content="We’re building the independent permissions layer between AI agents and brokerage accounts. Join the waitlist and tell us which brokers you use.">
+    <meta property="og:title" content="Flyrel — Let agents trade. Keep the final say.">
+    <meta property="og:description" content="The independent permissions layer for AI agents that trade. Join the waitlist.">
     <meta property="og:type" content="website">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="/fonts/mona-sans-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/styles.css">
     <script src="/app.js" type="module"></script>
+    <script src="/globe.js" type="module"></script>
+    <script src="/console.js" type="module"></script>
   </head>
   <body>
-    <div class="page">
-      <header class="site-header">
-        <a class="wordmark" href="/" aria-label="Flyrel home">
-          <svg class="brand-symbol" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M4 22V6h20M4 14h14M12 22V6" stroke="currentColor" stroke-width="3"/></svg>
-          flyrel<span class="wordmark-dot">.</span>
-        </a>
-        <span class="header-note">Independent by design.</span>
-      </header>
+    <a class="skip-link" href="#email">Skip to the waitlist</a>
 
-      <main id="main">
-        <section class="hero" aria-labelledby="hero-heading">
-          <div class="eyebrow"><span class="status-dot"></span> A new layer for agentic investing</div>
-          <h1 id="hero-heading">Your agents.<br>Your <span class="serif-word">rules.</span></h1>
-          <p class="hero-description">We’re building the permissions layer between<br class="desktop-break"> your AI agents and your brokerage accounts.</p>
-          <p class="hero-caption">You set the boundaries. That’s where we begin.</p>
+    <div class="sky" aria-hidden="true">
+      <div class="glow"></div>
+      <div class="globe"><canvas id="globe-canvas"></canvas></div>
+    </div>
 
-          <div class="waitlist" id="waitlist">
-            <div class="form-heading"><h2>Get in early.</h2><span>Help shape what’s next.</span></div>
-            <form id="waitlist-form">
-              <div class="field">
-                <label for="email">Your email</label>
-                <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" maxlength="254" required>
+    <header class="nav">
+      <a class="brand" href="/" aria-label="Flyrel home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.2 5H30l-2.6 6.4H6.6zM5.6 14.2h16.2l-2.6 6.4H3zM2 23.4h8.6L8 29.8H-.6z" transform="translate(1.2)"/></svg>
+        <span>Flyrel</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a class="nav-link" href="https://github.com/faiznazeer/flyrel-mcp">GitHub</a>
+        <a class="nav-cta" href="#email">Join waitlist</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-heading">
+        <a class="pill rise" href="#email"><span class="pill-tag">Early access</span><span>Waitlist now open</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5"/></svg></a>
+        <h1 id="hero-heading" class="rise rise-1">Let agents trade.<br>Keep the final say.</h1>
+        <p class="lede rise rise-2">We’re building the independent permissions layer between AI agents and brokerage accounts. Hard limits, human approval, and a record you can verify.</p>
+
+        <div class="join rise rise-3" id="join">
+          <form id="waitlist-form" novalidate>
+            <div class="capsule">
+              <div class="capsule-email">
+                <label class="sr-only" for="email">Your email</label>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2.5"/><path d="m3 6 7 5 7-5"/></svg>
+                <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" maxlength="254" required>
               </div>
-              <div class="field broker-field" id="broker-picker">
-                <div class="label-row"><label id="brokers-label" for="broker-toggle">Which brokers do you use?</label><span>Select multiple</span></div>
-                <button id="broker-toggle" class="broker-toggle" type="button" aria-expanded="false" aria-controls="broker-panel" aria-describedby="broker-help" disabled>
-                  <span id="broker-summary">Loading brokers…</span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
-                </button>
-                <div id="broker-panel" class="broker-panel" hidden>
-                  <div class="picker-toolbar">
-                    <label class="sr-only" for="broker-search">Search brokers or countries</label>
-                    <div class="search-wrap"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.3"/><path d="m10.5 10.5 3 3" stroke="currentColor" stroke-width="1.3"/></svg><input id="broker-search" type="search" placeholder="Search broker or country…" autocomplete="off"></div>
-                    <label class="sr-only" for="broker-region">Filter by region</label>
-                    <select id="broker-region"><option value="">All regions</option></select>
-                  </div>
-                  <div class="broker-options" id="broker-options" aria-labelledby="brokers-label"></div>
-                  <p id="no-results" class="no-results" hidden>No brokers found. Try another search, or add yours below.</p>
-                  <label class="broker-option other-option"><input id="other-check" type="checkbox" value="other"><span>Other / not listed</span><span class="option-meta">Add yours</span></label>
-                  <div class="picker-bottom"><span id="selection-count" aria-live="polite">0 selected · up to 20</span><button id="broker-done" type="button">Done <span aria-hidden="true">↗</span></button></div>
-                </div>
-                <div id="selected-brokers" class="selected-brokers" aria-label="Selected brokers" hidden></div>
-                <div id="other-field" class="other-field" hidden><label for="other-broker">Your broker’s name</label><input id="other-broker" name="otherBroker" maxlength="100" placeholder="Tell us who we’re missing"></div>
-                <p id="broker-help" class="field-note">Your picks help us prioritize. This is not a list of live integrations.</p>
-              </div>
-              <div class="honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-              <label class="consent"><input id="consent" name="consent" type="checkbox" required><span>Email me about Flyrel early access. <a href="/privacy.html">Privacy</a></span></label>
-              <button class="submit-button" id="submit-button" type="submit" disabled><span>Join the waitlist</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></button>
-              <p id="form-error" class="form-error" role="alert" hidden></p>
-              <p class="form-note" id="form-note">Early days. An open invitation.</p>
-              <noscript><p class="form-error">Please enable JavaScript to choose your brokers and join the waitlist.</p></noscript>
-            </form>
-            <div class="success-state" id="success-state" tabindex="-1" hidden>
-              <span class="success-icon" aria-hidden="true">✓</span>
+              <button id="broker-toggle" class="capsule-brokers" type="button" aria-haspopup="dialog" aria-controls="broker-dialog" disabled>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 17.5h14M4.5 15v-5M8.5 15v-5M11.5 15v-5M15.5 15v-5M2.8 7.8 10 3l7.2 4.8z"/></svg>
+                <span id="broker-summary">Your brokers</span>
+                <svg class="chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
+              </button>
+              <button class="capsule-submit" id="submit-button" type="submit" disabled>
+                <span id="submit-label">Join waitlist</span>
+                <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h12m-5-5 5 5-5 5"/></svg>
+              </button>
+            </div>
+            <div class="honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+            <div class="join-foot">
+              <label class="consent">
+                <input id="consent" name="consent" type="checkbox" required>
+                <span class="consent-box" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m2.5 6.5 2.3 2.3 4.7-5.3"/></svg></span>
+                <span>Email me about Flyrel early access.</span>
+              </label>
+              <a href="/privacy.html">Privacy</a>
+            </div>
+            <p id="form-error" class="form-error" role="alert" hidden></p>
+            <noscript><p class="form-error">Please enable JavaScript to choose your brokers and join the waitlist.</p></noscript>
+          </form>
+          <div class="success" id="success-state" tabindex="-1" hidden>
+            <span class="success-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.6 4.6L19 7"/></svg></span>
+            <div>
               <h2>You’re on the list.</h2>
-              <p>Thanks for being here from the beginning.<br>We’ll be in touch about early access.</p>
+              <p>Thanks for being here this early. We’ll be in touch about early access.</p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <div class="world-note"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor"/><ellipse cx="8" cy="8" rx="2.5" ry="6" stroke="currentColor"/><path d="M2 8h12" stroke="currentColor"/></svg> Wherever you invest. We’re listening.</div>
-      </main>
+      <section class="preview" aria-labelledby="preview-heading">
+        <figure class="console" id="console" aria-label="Concept preview: synthetic orders from an agent are checked against a rule set. Three are blocked, one is allowed and one waits for human approval.">
+          <div class="console-bar">
+            <span class="console-title"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.2 5H30l-2.6 6.4H6.6zM5.6 14.2h16.2l-2.6 6.4H3zM2 23.4h8.6L8 29.8H-.6z" transform="translate(1.2)"/></svg>research-agent</span>
+            <span class="console-flag">Concept preview · synthetic · no live broker</span>
+          </div>
+          <div class="console-body">
+            <aside class="rules">
+              <h3>Your rules</h3>
+              <dl>
+                <div class="rule" data-rule="limit"><dt>Max order</dt><dd>$5,000 · ₹4,00,000</dd></div>
+                <div class="rule" data-rule="approval"><dt>Ask me above</dt><dd>$2,500 · ₹2,00,000</dd></div>
+                <div class="rule" data-rule="instruments"><dt>Instruments</dt><dd>Stocks &amp; ETFs</dd></div>
+                <div class="rule" data-rule="withdrawals"><dt>Withdrawals</dt><dd>Never</dd></div>
+              </dl>
+            </aside>
+            <ol class="feed">
+              <li class="order is-allow" data-rule="limit">
+                <span class="order-side">Buy</span>
+                <span class="order-what">12 AAPL</span>
+                <span class="order-size">$2,160 USD</span>
+                <span class="order-why">Within your limits</span>
+                <span class="verdict">Allowed</span>
+              </li>
+              <li class="order is-block" data-rule="instruments">
+                <span class="order-side">Buy</span>
+                <span class="order-what">3 NVDA 0DTE calls</span>
+                <span class="order-size">$1,240 USD</span>
+                <span class="order-why">Options aren’t on your list</span>
+                <span class="verdict">Blocked</span>
+              </li>
+              <li class="order is-ask" data-rule="approval">
+                <span class="order-side">Buy</span>
+                <span class="order-what">80 RELIANCE</span>
+                <span class="order-size">₹2,32,000 INR</span>
+                <span class="order-why">Above your approval line</span>
+                <span class="verdict">Needs you</span>
+              </li>
+              <li class="order is-block" data-rule="limit">
+                <span class="order-side">Sell</span>
+                <span class="order-what">900 TSLA</span>
+                <span class="order-size">$19,800 USD</span>
+                <span class="order-why">Over your max order</span>
+                <span class="verdict">Blocked</span>
+              </li>
+              <li class="order is-block" data-rule="withdrawals">
+                <span class="order-side">Move</span>
+                <span class="order-what">Funds out</span>
+                <span class="order-size">$25,000 USD</span>
+                <span class="order-why">Agents can’t withdraw</span>
+                <span class="verdict">Blocked</span>
+              </li>
+            </ol>
+          </div>
+        </figure>
+        <div class="statement">
+          <h2 id="preview-heading">The agent proposes.<br>Flyrel decides.</h2>
+          <p>What we’re building: a service outside the agent’s reach that checks every order against your rules, so a confused model can’t talk its way past a limit.</p>
+        </div>
+      </section>
 
-      <footer class="site-footer"><span>© <span id="year">2026</span> Flyrel</span><span>In development. External broker access is read-only.</span><a href="/privacy.html">Privacy</a></footer>
-    </div>
+      <section class="reach" aria-labelledby="reach-heading">
+        <h2 id="reach-heading">From Mumbai to Madrid to Lagos.</h2>
+        <p><span id="broker-count">172</span> brokers on our list, on every continent except Antarctica. Tell us which ones you use and we’ll know where to build first.</p>
+        <div class="tickers" aria-hidden="true">
+          <div class="ticker"><div class="ticker-track" id="ticker-a"></div></div>
+          <div class="ticker ticker-reverse"><div class="ticker-track" id="ticker-b"></div></div>
+        </div>
+        <a class="button" href="#email">Join the waitlist</a>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-top">
+        <p>Flyrel is in development. External broker access is read-only and nothing here places orders. Broker names show waitlist options, not integrations, partnerships or endorsements; trademarks belong to their owners. Not investment advice.</p>
+        <nav aria-label="Footer">
+          <a href="/privacy.html">Privacy</a>
+          <a href="https://github.com/faiznazeer/flyrel-mcp">GitHub</a>
+          <span>© <span id="year">2026</span> Flyrel</span>
+        </nav>
+      </div>
+      <div class="footer-word" aria-hidden="true">Flyrel</div>
+    </footer>
+
+    <dialog id="broker-dialog" class="picker" aria-labelledby="picker-title">
+      <div class="picker-head">
+        <div>
+          <h2 id="picker-title">Which brokers do you use?</h2>
+          <p>Pick as many as you like. These are not live integrations; your picks help us decide what to build first.</p>
+        </div>
+        <button class="picker-close" type="button" id="picker-close" aria-label="Close broker list"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8m0-8-8 8"/></svg></button>
+      </div>
+      <div class="picker-search">
+        <svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="8" cy="8" r="5.25"/><path d="m12 12 3.5 3.5"/></svg>
+        <label class="sr-only" for="broker-search">Search brokers or countries</label>
+        <input id="broker-search" type="search" placeholder="Search by broker or country" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="picker-tabs" id="broker-regions" role="group" aria-label="Filter by region"></div>
+      <div class="picker-list" id="broker-list" tabindex="-1">
+        <div id="broker-options"></div>
+        <div class="no-results" id="no-results" hidden>
+          <p id="no-results-text"></p>
+          <button class="add-other" type="button" id="add-other"></button>
+        </div>
+        <label class="broker broker-other">
+          <input id="other-check" type="checkbox" value="other">
+          <span class="broker-mono" aria-hidden="true">+</span>
+          <span class="broker-text"><span class="broker-name">Other / not listed</span><span class="broker-market">Tell us who we’re missing</span></span>
+          <span class="broker-check" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m2.5 6.5 2.3 2.3 4.7-5.3"/></svg></span>
+        </label>
+        <div class="other-field" id="other-field" hidden>
+          <label for="other-broker">Your broker’s name</label>
+          <input id="other-broker" name="otherBroker" maxlength="100" autocomplete="off" placeholder="e.g. My Local Broker">
+        </div>
+      </div>
+      <div class="picker-foot">
+        <span aria-live="polite"><button type="button" id="selection-count" aria-pressed="false">0 selected</button></span>
+        <button class="button" type="button" id="broker-done">Done</button>
+      </div>
+    </dialog>
   </body>
 </html>
